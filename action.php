@@ -33,13 +33,14 @@ if (isset($_POST['signup'])) {
 
     if (empty($_SESSION['error'])) {
         # insert user into the DB
-        $sql = "INSERT INTO users(fname, lname, email, password) VALUES('$fname', '$lname', '$email', '$password_hash')";
+        $sql = "INSERT INTO admin(fname, lname, email, password_hash) VALUES('$fname', '$lname', '$email', '$password_hash')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            echo "record successfully inserted";
+            header("Location: index.php");
+            exit;
         }
         else {
-            echo "not inserted";
+            echo "There was an error signing up";
         }
     }
 }
@@ -49,16 +50,25 @@ elseif (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email ='$email'";
+    $sql = "SELECT * FROM admin WHERE email ='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row['password'])) {
-            echo "This user is legit!";
-        }
+        if ($row = mysqli_fetch_assoc($result)) {
+            if (password_verify($password, $row['password_hash'])) {
+                $id = $row['id'];
+                $fname =$row['fname'];
+
+                $_SESSION['auth'] = array(
+                    'id'=>$id,
+                    'fname'=>$fname
+                );
+                header("Location: index.php");
+                exit;
+            }
+        } 
     }
-    else {
-        "Email is not found";
-    }
+    // else {
+    //     "Email is not found";
+    // }
 }
 ?>
