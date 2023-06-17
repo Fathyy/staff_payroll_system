@@ -1,0 +1,22 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+.flex-container{
+    height: 100vh;
+}
+.header{
+    font-weight: 700;
+    text-align: center;
+}
+.container{
+    margin: 0 auto;
+}
+.btn{
+    width: 100%;
+}
+.btn > button{
+    width: 20%;
+}
