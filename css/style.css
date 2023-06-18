@@ -20,3 +20,8 @@ body {
 .btn > button{
     width: 20%;
 }
+
+/* login form */
+.form-control{
+    border: 1px solid black;
+}

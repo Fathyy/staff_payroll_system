@@ -5,6 +5,10 @@ require_once __DIR__ . "/includes/header.php";?>
     <div class="row flex-container justify-content-center align-items-center">
         <div class="col-md-6 border py-4 px-5">
             <h3 class="header">Login Form</h3>
+            <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> -->
             <form action="action.php" method="post">
                 <!-- email -->
                     <div class="mb-3">

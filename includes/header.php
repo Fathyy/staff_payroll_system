@@ -13,7 +13,7 @@
     <link id="pagestyle" href="assets/css/material-dashboard.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body class="g-sidenav-show  bg-gray-200">
+  <body class="g-sidenav-show">
   
     
     

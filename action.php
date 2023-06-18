@@ -9,6 +9,8 @@ if (isset($_POST['signup'])) {
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
+    $error=[];
+
     if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($cpassword)) {
         $_SESSION['error'] = "This field cannot be empty";
     }
@@ -17,31 +19,40 @@ if (isset($_POST['signup'])) {
     if ($sanitisedEmail) {
         $validatedEmail = filter_var($sanitisedEmail, FILTER_VALIDATE_EMAIL);
         if ($validatedEmail == false) {
-            $_SESSION['error'] = "Incorrect email format";
+            $error['email'] = "Incorrect email format";
         }
     }
 
     // check if the password contains 8 characters and has letters and numbers.
     if (! preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{8,}$/',$_POST["password"])) {
-        $_SESSION['error'] = "Password must contain numbers and letters and must be at least 8 characters long!";
+        $error['password'] = "Password must contain numbers and letters and must be at least 8 characters long!";
     }
     if ($password !== $cpassword) {
-        $_SESSION['error'] ="Passwords should match";
+        $error['cpassword'] ="Passwords should match";
     }
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    if (empty($_SESSION['error'])) {
+    if (count($error) === 0) {
         # insert user into the DB
         $sql = "INSERT INTO admin(fname, lname, email, password_hash) VALUES('$fname', '$lname', '$email', '$password_hash')";
         $result = mysqli_query($conn, $sql);
-        if ($result) {
-            header("Location: index.php");
-            exit;
-        }
-        else {
-            echo "There was an error signing up";
-        }
+                header("Location: login.php");
+                exit;
+        // if (mysqli_num_rows($result) > 0) {
+        //     if ($row = mysqli_fetch_assoc($result)) {
+        //         // if the person has signed up, take them to the login page
+                    
+        //     }
+            
+        
+    }
+    else{
+        // stay in the signup page if there are errors
+        $_SESSION['errors'] = $error;
+        header("Location: signup.php");
+        exit;
+
     }
 }
 
@@ -67,8 +78,8 @@ elseif (isset($_POST['login'])) {
             }
         } 
     }
-    // else {
-    //     "Email is not found";
-    // }
+    else {
+        $_SESSION['error'] = "Invalid credentials!";
+    }
 }
 ?>
