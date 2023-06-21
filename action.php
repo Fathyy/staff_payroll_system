@@ -35,7 +35,7 @@ if (isset($_POST['signup'])) {
 
     if (count($error) === 0) {
         # insert user into the DB
-        $sql = "INSERT INTO admin(fname, lname, email, password_hash) VALUES('$fname', '$lname', '$email', '$password_hash')";
+        $sql = "INSERT INTO users(fname, lname, email, password_hash) VALUES('$fname', '$lname', '$email', '$password_hash')";
         $result = mysqli_query($conn, $sql);
                 header("Location: login.php");
                 exit;
@@ -61,18 +61,24 @@ elseif (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM admin WHERE email ='$email'";
+    $sql = "SELECT * FROM users WHERE email ='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password_hash'])) {
                 $id = $row['id'];
                 $fname =$row['fname'];
+                $role = $row['role'];
 
                 $_SESSION['auth'] = array(
                     'id'=>$id,
                     'fname'=>$fname
                 );
+                $_SESSION['role'] = $role;
+                if ($role == 1) {
+                    header("Location: admin/index.php");
+                    exit;
+                }
                 header("Location: index.php");
                 exit;
             }
