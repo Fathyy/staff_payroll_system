@@ -6,10 +6,10 @@ if (!isset($_SESSION['auth'])) {
 }
 
 require __DIR__ . '/../includes/header.php';
-include ('../includes/sidebar.php')?>
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
- <?php include ('../includes/navbar.php')
+echo "This is the admin side";
+
 ?>
+<a href="../logout.php">Logout</a>
 
 <?php require __DIR__ . '/../includes/footer.php';?>
 
