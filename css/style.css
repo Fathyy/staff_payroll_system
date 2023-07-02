@@ -25,3 +25,8 @@ body {
 .form-control{
     border: 1px solid black;
 }
+/* admin-index.php */
+.content {
+    margin-left: 200px;
+    padding: 20px;
+}

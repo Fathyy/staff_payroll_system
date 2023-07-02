@@ -1,100 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Sidebar</title>
-    <!-- Boxicons CSS -->
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
-    <!-- poppins google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/sidebar.css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ed20622ed8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/sidebar.css">
   </head>
   <body>
-    <nav>
-      <div class="logo">
-        <i class="bx bx-menu menu-icon"></i>
-        <span class="logo-name">Staff Payroll System</span>
-      </div>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="bg-dark col-auto col-md-4 col-lg-2 p-0 min-vh-100 d-flex flex-column justify-content-between">
+                <div class="bg-dark p-2">
+                    <a href="#" class="d-flex text-decoration-none mt-1 align-items-center text-white">
+                        <span class="fs-4 d-none d-sm-inline">Staff Payroll</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mt-4">
+                        <li class="nav-item py-2 py-sm-0">
+                            <a href="dashboard.php" class="nav-link text-white">
+                            <i class="fa-solid fa-gauge"></i>
+                                <span class="fs-4 d-none d-sm-inline ms-3">Dashboard</span>
+                                </a>
+                        </li>
 
-      <div class="logout">
-        <a href="logout.php">Logout</a>
-      </div>
+                        <li class="nav-item py-2 py-sm-0">
+                            <a href="viewDepartment.php" class="nav-link text-white">
+                            <i class="fa-solid fa-building"></i> 
+                                <span class="fs-4 d-none d-sm-inline ms-3">Department</span>
+                                </a>
+                        </li>
 
-      <div class="sidebar">
-        <div class="logo">
-          <i class="bx bx-menu menu-icon"></i>
-          <span class="logo-name">Staff Payroll System</span>
+                        <li class="nav-item py-2 py-sm-0">
+                            <a href="employees.php" class="nav-link text-white">
+                            <i class="fa-solid fa-users"></i> 
+                                <span class="fs-4 d-none d-sm-inline ms-3">Employees</span>
+                                </a>
+                        </li>
+
+                        <li class="nav-item py-2 py-sm-0">
+                            <a href="payslip.php" class="nav-link text-white">
+                            <i class="fa-solid fa-receipt"></i> 
+                                <span class="fs-4 d-none d-sm-inline ms-3">Payslip</span>
+                                </a>
+                        </li>
+                    </ul>
+                  </div>
+                <div class="dropdown open p-3">
+                    <button class="btn border-none dropdown-toggle text-white" type="button" id="triggerId" aria-expanded="false" data-bs-toggle="dropdown">
+                        <i></i><span class="ms-2">Admin</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        <div class="sidebar-content">
-          <ul class="lists">
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="link">Dashboard</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-bar-chart-alt-2 icon"></i>
-                <span class="link">Revenue</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-bell icon"></i>
-                <span class="link">Notifications</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Messages</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-pie-chart-alt-2 icon"></i>
-                <span class="link">Analytics</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-heart icon"></i>
-                <span class="link">Likes</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-folder-open icon"></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="bottom-cotent">
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">Settings</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-log-out icon"></i>
-                <span class="link">Logout</span>
-              </a>
-            </li>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <section class="overlay"></section>
-
-    <script src="js/script.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>
