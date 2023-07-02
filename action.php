@@ -76,7 +76,7 @@ elseif (isset($_POST['login'])) {
                 );
                 $_SESSION['role'] = $role;
                 if ($role == 1) {
-                    header("Location: admin/index.php");
+                    header("Location: admin-index.php");
                     exit;
                 }
                 header("Location: index.php");
