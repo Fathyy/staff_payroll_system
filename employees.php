@@ -1,5 +1,4 @@
 <?php require __DIR__ . '/includes/header.php';?>
-  <div class="container">
     <div class="row">
         <div class="col-md-12">
             <table class="table table-bordered table-hover">
@@ -42,6 +41,5 @@
             </table>
         </div>
     </div>
-</div>
 <?php require __DIR__ . '/includes/footer.php';?>
 

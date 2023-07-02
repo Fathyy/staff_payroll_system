@@ -10,10 +10,10 @@
 
     <style>
       /* admin-index.php */
-    .content {
+    /* .content {
         margin-left: 200px;
         padding: 20px;
-      }
+      } */
     </style>
   </head>
   <body>
