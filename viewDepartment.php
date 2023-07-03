@@ -1,6 +1,4 @@
 <?php
-
-require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/navbar.php';?>
     <div class="row mt-5">
         <div class="col-md-12">
@@ -36,6 +34,4 @@ require __DIR__ . '/includes/navbar.php';?>
             </table>
         </div>
     </div>
-
-    <?php require __DIR__ . '/includes/footer.php';?>
     
