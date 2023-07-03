@@ -26,7 +26,10 @@ body {
     border: 1px solid black;
 }
 /* admin-index.php */
-.content {
+/* .content {
     margin-left: 200px;
     padding: 20px;
+} */
+.theading{
+    color: red;
 }

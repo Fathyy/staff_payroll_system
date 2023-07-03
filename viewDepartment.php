@@ -1,11 +1,13 @@
-<?php require __DIR__ . '/includes/header.php';?>
-    <div class="row">
+<?php
+
+require __DIR__ . '/includes/header.php';
+require __DIR__ . '/includes/navbar.php';?>
+    <div class="row mt-5">
         <div class="col-md-12">
-        
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover w-auto">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th class="theading">Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,5 +37,5 @@
         </div>
     </div>
 
-<?php require __DIR__ . '/includes/footer.php';?>
+    <?php require __DIR__ . '/includes/footer.php';?>
     

@@ -1,16 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/ed20622ed8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/sidebar.css">
-  </head>
-  <body>
+<?php require __DIR__ . '/header.php';?>
     <div class="container-fluid">
-        <div class="row flex-nowrap">
+        <div class="row flex-nowrap" style="overflow-x:hidden;">
             <div class="bg-dark col-auto col-md-4 col-lg-2 p-0 min-vh-100 d-flex flex-column justify-content-between">
                 <div class="bg-dark p-2">
                     <a href="#" class="d-flex text-decoration-none mt-1 align-items-center text-white">
@@ -63,7 +53,4 @@
           </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
-  </body>
-</html>
+    <?php require __DIR__ . '/footer.php';?>

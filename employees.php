@@ -1,7 +1,7 @@
-<?php require __DIR__ . '/includes/header.php';?>
-    <div class="row">
+<?php require __DIR__ . '/includes/navbar.php';?>
+    <div class="row mt-5">
         <div class="col-md-12">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-responsive w-auto">
                 <thead>
                     <tr>
                         <th>Full Name</th>
@@ -41,5 +41,5 @@
             </table>
         </div>
     </div>
-<?php require __DIR__ . '/includes/footer.php';?>
+
 
