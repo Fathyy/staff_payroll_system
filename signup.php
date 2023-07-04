@@ -4,7 +4,7 @@ require_once __DIR__ . "/includes/header.php";
 ?>
 
 <div class="container">
-    <div class="row flex-container justify-content-center align-items-center">
+    <div class="row flex-container justify-content-center align-items-center vh-100">
         <div class="col-md-6 border py-4 px-5">
             <h3 class="header">Signup Form</h3>
             <form action="action.php" method="post">

@@ -2,7 +2,7 @@
 require_once __DIR__ . "/includes/header.php";?>
 
 <div class="container">
-    <div class="row flex-container justify-content-center align-items-center">
+    <div class="row flex-container justify-content-center align-items-center vh-100">
         <div class="col-md-6 border py-4 px-5">
             <h3 class="header">Login Form</h3>
             <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">

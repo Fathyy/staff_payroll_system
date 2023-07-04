@@ -43,6 +43,20 @@
                         </li>
 
                         <li class="nav-item py-2 py-sm-0">
+                            <a href="allowance.php" class="nav-link text-white">
+                            <i class="fa-solid fa-users"></i> 
+                                <span class="fs-4 d-none d-sm-inline ms-3">Allowance</span>
+                                </a>
+                        </li>
+
+                        <li class="nav-item py-2 py-sm-0">
+                            <a href="deductions.php" class="nav-link text-white">
+                            <i class="fa-solid fa-users"></i> 
+                                <span class="fs-4 d-none d-sm-inline ms-3">Deductions</span>
+                                </a>
+                        </li>
+
+                        <li class="nav-item py-2 py-sm-0">
                             <a href="payslip.php" class="nav-link text-white">
                             <i class="fa-solid fa-receipt"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">Payslip</span>
@@ -55,16 +69,14 @@
                         <i></i><span class="ms-2">Admin</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
                 </div>
 
             </div>
 
             <div class="content">
-                <?php include 'dashboard.php'?>
-              
+                <?php include 'dashboard.php'?>  
           </div>
         </div>
     </div>

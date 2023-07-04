@@ -1,7 +1,8 @@
 <?php require __DIR__ . '/includes/navbar.php';?>
+<div class="container">
     <div class="row mt-5">
         <div class="col-md-12">
-            <table class="table table-bordered table-hover table-responsive w-auto">
+            <table class="table table-bordered table-hover table-responsive" style="width:80%;">
                 <thead>
                     <tr>
                         <th>Full Name</th>
@@ -41,5 +42,6 @@
             </table>
         </div>
     </div>
+</div>
 
 

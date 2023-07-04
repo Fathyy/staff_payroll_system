@@ -1,11 +1,12 @@
 <?php
 require __DIR__ . '/includes/navbar.php';?>
+<div class="container">
     <div class="row mt-5">
         <div class="col-md-12">
-            <table class="table table-bordered table-hover w-auto">
+            <table class="table table-bordered table-hover" style="width:80%;">
                 <thead>
                     <tr>
-                        <th class="theading">Name</th>
+                        <th>Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -34,4 +35,5 @@ require __DIR__ . '/includes/navbar.php';?>
             </table>
         </div>
     </div>
+</div>
     

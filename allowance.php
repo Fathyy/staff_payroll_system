@@ -1,14 +1,14 @@
 <?php
 
 require __DIR__ . '/includes/navbar.php';
-require __DIR__ . "/config/database.php";
 
-// inserting new deduction information into the db
+// inserting new allowance information into the db
+require __DIR__ . "/config/database.php";
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
 
-    $sql = "INSERT INTO deductions(name, description)
+    $sql = "INSERT INTO allowance(name, description)
     VALUES('$name', '$description')";
     $result = mysqli_query($conn, $sql);
 }
@@ -30,7 +30,7 @@ if (isset($_POST['save'])) {
         </form>
     </div>
     <div class="col-md-6">
-        <!-- display the deductions information on this side -->
+        <!-- display the allowance information on this side -->
         <table class="table table-bordered">
   <thead>
     <tr>
@@ -41,7 +41,7 @@ if (isset($_POST['save'])) {
   <tbody>
     <?php
     // display allowances from the db
-    $sql = "SELECT * FROM deductions";
+    $sql = "SELECT * FROM allowance";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) :
         while ($row = mysqli_fetch_assoc($result)) :?>
@@ -49,7 +49,7 @@ if (isset($_POST['save'])) {
             <td><?php echo $row['name']?></td>
         </tr> 
         
-        <!-- edit or delete actions for the deduction -->
+        <!-- edit or delete actions for the allowance -->
         <tr>
             <td>
                 <!-- Edit -->
