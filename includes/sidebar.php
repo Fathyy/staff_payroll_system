@@ -50,9 +50,9 @@
                         </li>
 
                         <li class="nav-item py-2 py-sm-0">
-                            <a href="deductions.php" class="nav-link text-white">
+                            <a href="expenses.php" class="nav-link text-white">
                             <i class="fa-solid fa-users"></i> 
-                                <span class="fs-4 d-none d-sm-inline ms-3">Deductions</span>
+                                <span class="fs-4 d-none d-sm-inline ms-3">Expenses</span>
                                 </a>
                         </li>
 

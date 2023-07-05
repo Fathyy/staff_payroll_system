@@ -88,4 +88,29 @@ elseif (isset($_POST['login'])) {
         $_SESSION['error'] = "Invalid credentials!";
     }
 }
+
+// process the allowance form
+elseif (isset($_POST['allowance'])) {
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+
+    $sql = "INSERT INTO allowance(name, description)
+    VALUES('$name', '$description')";
+    $result = mysqli_query($conn, $sql);
+        header("Location: admin-index.php");
+        exit;
+}
+
+// process the expenses
+elseif (isset($_POST['expenses'])) {
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+
+    $sql = "INSERT INTO expenses(name, description)
+    VALUES('$name', '$description')";
+    $result = mysqli_query($conn, $sql);
+        header("Location: admin-index.php");
+        exit;
+    
+}
 ?>

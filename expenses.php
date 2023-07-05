@@ -17,11 +17,11 @@ require __DIR__ . "/config/database.php";
                     <textarea name="description" id="description" class="form-control" 
                     cols="15" rows="10"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg" name="allowance">Save</button>
+                <button type="submit" class="btn btn-primary btn-lg" name="expenses">Save</button>
             </form>
         </div>
         <div class="col-md-6 ms-4">
-            <!-- display the allowance information on this side -->
+            <!-- display the expenses information on this side -->
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -31,14 +31,14 @@ require __DIR__ . "/config/database.php";
                 </thead>
                 <tbody>
                     <?php
-                    // display allowance from the db
-                    $sql = "SELECT * FROM allowance";
+                    // display expenses from the db
+                    $sql = "SELECT * FROM expenses";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) :
                         while ($row = mysqli_fetch_assoc($result)) :?>
                         <tr>
                             <td><?php echo $row['name']?></td>
-                    <!-- edit or delete actions for the allowance -->
+                    <!-- edit or delete actions for the expenses -->
                             <td>
                                 <!-- Edit -->
                                 <a href="#?id=<?php echo htmlspecialchars($row['id'])?>" 
