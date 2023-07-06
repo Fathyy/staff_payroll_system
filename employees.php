@@ -1,4 +1,12 @@
-<?php require __DIR__ . '/includes/navbar.php';?>
+<?php
+// The user should be logged in to access this page
+session_start();
+if (!isset($_SESSION['auth'])) {
+    header("Location: login.php");
+    exit;
+}
+
+require __DIR__ . '/includes/navbar.php';?>
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-12">

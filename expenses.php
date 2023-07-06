@@ -1,4 +1,10 @@
 <?php
+// The user should be logged in to access this page
+session_start();
+if (!isset($_SESSION['auth'])) {
+    header("Location: login.php");
+    exit;
+}
 require __DIR__ . '/includes/navbar.php';
 
 require __DIR__ . "/config/database.php";
@@ -15,7 +21,7 @@ require __DIR__ . "/config/database.php";
                 <div class="mb-3">
                     <label for="name" class="form-label">Description</label>
                     <textarea name="description" id="description" class="form-control" 
-                    cols="15" rows="10"></textarea>
+                    cols="15" rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg" name="expenses">Save</button>
             </form>
