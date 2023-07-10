@@ -1,4 +1,4 @@
-// Add event listeners to the sidebar links
+
 const sidebarLinks = document.querySelectorAll('.nav li a');
 sidebarLinks.forEach(link => {
     link.addEventListener('click', (e) => {

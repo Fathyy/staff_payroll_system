@@ -28,4 +28,8 @@ body {
 .theading{
     color: red;
 }
-/* dashboard */
+
+/* sidebar */
+.nav-pills li a:hover{
+    background-color: blue;
+}
