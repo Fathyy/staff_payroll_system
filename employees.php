@@ -7,13 +7,12 @@ include_once __DIR__ . "/includes/header.php";
                 <div class="card" style="width:80%;">
                     <div class="card-header">
                         <span><b>Employee List</b></span>
-						<button class="btn btn-primary btn-sm btn-block col-md-3 float-end" type="button" id="new_attendance_btn">
+						<button class="btn btn-primary btn-sm col-md-3 float-end" type="button" id="new_attendance_btn">
                             <span class="fa fa-plus"></span> Add Attendance
                         </button>
                     </div>
                     <div class="card-body">
-                    
-                        <table  id="table" class="table table-bordered table-hover table-responsive">
+                        <table id="table" class="table table-bordered table-hover table-responsive">
                             <colgroup>
 								<col width="20%">
 								<col width="20%">
@@ -55,7 +54,7 @@ include_once __DIR__ . "/includes/header.php";
 
                                                 <!-- the view link below shows a tooltip and opens a modal to show user details -->
                                                 <!-- View Record -->
-                                                <a href="" class="btn"
+                                                <a href=""
                                                 data-bs-toggle="tooltip" data-bs-title="View Record" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <i class="fa-regular fa-eye"></i></a>
                                             </td>
@@ -70,33 +69,13 @@ include_once __DIR__ . "/includes/header.php";
             </div>
         </div>
     </div>
-<!-- modal to view user information -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false" data-bs-keyboard="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">User details</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h3></h3>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
-<script>
+<?php include_once __DIR__ . "/includes/footer.php";?>
+<script type="text/javascript">
     $(document).ready( function () {
     $('#table').DataTable();
 } );
 </script>
-
-<?php include_once __DIR__ . "/includes/footer.php";?>
 
 
 

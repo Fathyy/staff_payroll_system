@@ -2,10 +2,11 @@
 require __DIR__ . '/includes/navbar.php';
 
 require __DIR__ . "/config/database.php";
+
 ?>
 <div class="container">
     <div class="row m-3">
-        <div class="col-md-6" style="width:30%; border:1px solid black">
+        <div class="col-md-6 border" style="width:30%;">
             <form action="action.php" method="post" class="p-3">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
