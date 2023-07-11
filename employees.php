@@ -74,7 +74,14 @@ include_once __DIR__ . "/includes/header.php";
 <script type="text/javascript">
     $(document).ready( function () {
     $('#table').DataTable();
-} );
+}
+ 
+// stop the page from loading if the new attendance button is clicked
+$('#new_attendance_btn').submit(function(e){
+    e.preventDefault()
+}
+);
+
 </script>
 
 

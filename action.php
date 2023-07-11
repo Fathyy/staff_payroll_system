@@ -89,7 +89,7 @@ elseif (isset($_POST['login'])) {
     }
 }
 
-// process the allowance form
+//process the allowance form
 elseif (isset($_POST['allowance'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];

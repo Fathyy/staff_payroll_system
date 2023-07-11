@@ -2,7 +2,6 @@
 require __DIR__ . '/includes/navbar.php';
 
 require __DIR__ . "/config/database.php";
-
 ?>
 <div class="container">
     <div class="row m-3">
@@ -14,11 +13,16 @@ require __DIR__ . "/config/database.php";
                 </div>
 
                 <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="text" name="amount" id="amount" class="form-control">
+                </div>
+
+                <div class="mb-3">
                     <label for="name" class="form-label">Description</label>
                     <textarea name="description" id="description" class="form-control" 
                     cols="15" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg" name="allowance">Save</button>
+                <button type="submit" id="submit" class="btn btn-primary btn-lg" name="allowance">Save</button>
             </form>
         </div>
         <div class="col-md-6 ms-4">
@@ -27,6 +31,7 @@ require __DIR__ . "/config/database.php";
                 <thead>
                     <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -39,6 +44,7 @@ require __DIR__ . "/config/database.php";
                         while ($row = mysqli_fetch_assoc($result)) :?>
                         <tr>
                             <td><?php echo $row['name']?></td>
+                            <td><?php echo $row['Amount']?></td>
                     <!-- edit or delete actions for the allowance -->
                             <td>
                                 <!-- Edit -->
@@ -62,3 +68,15 @@ require __DIR__ . "/config/database.php";
         </div>
     </div>
 </div>
+
+<!-- Ajax code -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $('#submit').submit(function(e){
+        e.preventDefault()
+            }
+    );
+
+    });
+</script>

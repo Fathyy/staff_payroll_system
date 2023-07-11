@@ -13,6 +13,11 @@ require __DIR__ . "/config/database.php";
                 </div>
 
                 <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="text" name="amount" id="amount" class="form-control">
+                </div>
+
+                <div class="mb-3">
                     <label for="name" class="form-label">Description</label>
                     <textarea name="description" id="description" class="form-control" 
                     cols="15" rows="5"></textarea>
@@ -26,6 +31,7 @@ require __DIR__ . "/config/database.php";
                 <thead>
                     <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -38,6 +44,7 @@ require __DIR__ . "/config/database.php";
                         while ($row = mysqli_fetch_assoc($result)) :?>
                         <tr>
                             <td><?php echo $row['name']?></td>
+                            <td><?php echo $row['Amount']?></td>
                     <!-- edit or delete actions for the expenses -->
                             <td>
                                 <!-- Edit -->
