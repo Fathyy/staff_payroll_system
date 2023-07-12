@@ -74,9 +74,22 @@ require __DIR__ . "/config/database.php";
 <script>
     $(document).ready(function(){
         $('#submit').submit(function(e){
+            var formData = {
+            name: $("#name").val(),
+            amount: $("#amount").val(),
+    };
+
+    $.ajax({
+        method: "POST",
+        url: "action.php",
+        data: formData,
+        dataType: "json",
+        encode: true,
+    }).done(function(data){
+        console.log(data);
+    });
         e.preventDefault()
-            }
-    );
+            });
 
     });
 </script>
