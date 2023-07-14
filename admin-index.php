@@ -6,8 +6,8 @@ if (!isset($_SESSION['auth'])) {
     exit;
 }
 // require __DIR__ . '/includes/sidebar.php'
-include_once __DIR__ . "/includes/sidebar.php";?>
-
-<script src="js/script.js"></script>
+include_once __DIR__ . "/includes/header.php";
+include_once __DIR__ . "/includes/footer.php";
+?>
 
 

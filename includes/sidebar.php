@@ -60,32 +60,6 @@ include_once __DIR__ . "/header.php";?>
                         <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
                 </div>
-
-                <!-- <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i><span class="ms-2">Admin</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="logout.php">Logout</a>
-                    </div>
-                </div> -->
-
-                
-                <!-- <div class="btn-group dropup">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i><span class="ms-2">Admin</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="logout.php">Logout</a>
-                    </div>
-                </div> -->
-
-            </div>
-
-            <div class="content">
-                <?php include 'dashboard.php'?>  
-          </div>
-          
         </div>
     </div>
     <?php include_once __DIR__ . "/footer.php";?>
