@@ -60,6 +60,13 @@ include_once __DIR__ . "/header.php";?>
                         <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
                 </div>
+
+                
         </div>
+        <div class="content">
+                    <?php include "dashboard.php"?>
+                </div>
     </div>
     <?php include_once __DIR__ . "/footer.php";?>
+
+    <script src="js/script.js"></script>
