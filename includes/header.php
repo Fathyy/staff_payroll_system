@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- datatables css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
   </head>
 
   <body>

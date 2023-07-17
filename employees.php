@@ -4,12 +4,14 @@ include_once __DIR__ . "/includes/header.php";
     <div class="container-fluid">
         <div class="row mt-5">
             <div class="col-md-12">
-                <div class="card" style="width:80%;">
+                <div class="card">
                     <div class="card-header">
-                        <span><b>Employee List</b></span>
-						<button class="btn btn-primary btn-sm col-md-3 float-end" type="button" id="new_attendance_btn">
-                            <span class="fa fa-plus"></span> Add Attendance
-                        </button>
+                        <h4>Employee List
+                            <button class="btn btn-primary float-end" type="button">
+                                <span class="fa fa-plus"></span> Add Attendance
+                            </button>
+                        </h4>
+						
                     </div>
                     <div class="card-body">
                         <table id="table" class="table table-bordered table-hover table-responsive">
@@ -71,21 +73,7 @@ include_once __DIR__ . "/includes/header.php";
     </div>
 
 <?php include_once __DIR__ . "/includes/footer.php";?>
-<script type="text/javascript">
-    $(document).ready(function () {
-    $('#table').DataTable();
 
-    // stop the page from loading if the new attendance button is clicked
-    $('#new_attendance_btn').submit(function(e){
-        e.preventDefault()
-    });
-
-});
-
- 
-
-
-</script>
 
 
 
