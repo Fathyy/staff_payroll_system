@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row mt-5">
 
-        <div class="col-md-4" style="width:25%;">
+        <div class="col-md-4" >
             <div class="card mb-3">
                 <div class="card-header">Departments</div>
                 <div class="card-body">
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-md-4" style="width:25%;">
+        <div class="col-md-4">
             <div class="card mb-3">
                 <div class="card-header">Employees</div>
                 <div class="card-body">
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-md-4" style="width:25%;">
+        <div class="col-md-4">
             <div class="card mb-3">
                 <div class="card-header">Payslip</div>
                 <div class="card-body">
