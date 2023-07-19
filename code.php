@@ -72,7 +72,7 @@ if(isset($_POST['delete_department']))
 if(isset($_POST['save_employee']))
 {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $department = mysqli_real_escape_string($conn, $_POST['department']);
+    $department = $_POST['department'];
     $designation = mysqli_real_escape_string($conn, $_POST['designation']);
     $salary = mysqli_real_escape_string($conn, $_POST['salary']);
 
@@ -88,8 +88,8 @@ if(isset($_POST['save_employee']))
         return;
     }
 
-    $query = "INSERT INTO employees(Full Name, Department, Designation, Salary) 
-    VALUES ('$name', '$department', '$designation', '$salary')";
+    $query = "INSERT INTO employees(FullName, Department, Designation, Salary) 
+    VALUES('$name', '$department', '$designation', '$salary')";
     $query_run = mysqli_query($conn, $query);
 
     if($query_run)
@@ -111,4 +111,65 @@ if(isset($_POST['save_employee']))
         return;
     }
 }
+
+// view employee details
+if(isset($_GET['employee_id']))
+{
+    $employee_id = mysqli_real_escape_string($conn, $_GET['employee_id']);
+
+    $query = "SELECT * FROM employees WHERE id='$employee_id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($query_run) == 1)
+    {
+        $employee = mysqli_fetch_array($query_run);
+
+        $res = [
+            'status' => 200,
+            'message' => 'employee Fetch Successfully by id',
+            'data' => $employee
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 404,
+            'message' => 'employee Id Not Found'
+        ];
+        echo json_encode($res);
+        return;
+    }
+}
+
+// delete employee
+if(isset($_POST['delete_employee']))
+{
+    $employee_id = mysqli_real_escape_string($conn, $_POST['employee_id']);
+
+    $query = "DELETE FROM employees WHERE id='$employee_id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if($query_run)
+    {
+        $res = [
+            'status' => 200,
+            'message' => 'employee Deleted Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 500,
+            'message' => 'employee Not Deleted'
+        ];
+        echo json_encode($res);
+        return;
+    }
+}
+
+
 ?>

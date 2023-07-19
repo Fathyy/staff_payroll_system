@@ -29,6 +29,40 @@
 </div>
 <!-- Add new department modal -->
 
+<!-- View Student Modal -->
+<div class="modal fade" id="studentViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">View Student</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="">First Name</label>
+                    <p id="view_fname" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="">Last Name</label>
+                    <p id="view_lname" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="">Email</label>
+                    <p id="view_email" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="">Password</label>
+                    <p id="view_password" class="form-control"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
     <div class="row mt-5">
@@ -36,7 +70,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Department List
-                        <button class="btn btn-primary float-end" type="button"
+                        <button class="btn btn-primary float-end w-auto" type="button"
                         data-bs-toggle="modal" data-bs-target="#departmentAddModal">
                             <span class="fa fa-plus"></span> Add Department
                         </button>
@@ -61,10 +95,7 @@
                                     <tr>
                                         <td><?php echo $row['Name']?></td> 
                                         <td>
-                                            <!-- Delete Record -->
-                                            <!-- <a href="#"
-                                            data-bs-toggle="tooltip" data-bs-title="Delete Record"><i class="fa-solid fa-trash"></i></a> -->
-                                            <button type="button" value="<?=$row['id'];?>" class="deleteStudentBtn btn btn-danger btn-sm">Delete</button>
+                                            <button type="button" value="<?=$row['id'];?>" class="deleteStudentBtn btn btn-danger btn-sm w-auto">Delete</button>
                                         </td>
                                     </tr>
                                 <?php endwhile ?>
@@ -77,7 +108,8 @@
 </div>
 <?php include_once __DIR__ . "/includes/footer.php";?>
 <script>
-   $(document).on('submit', '#saveDepartment', function (e) {
+     
+        $(document).on('submit', '#saveDepartment', function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
@@ -115,20 +147,47 @@
 
         }); 
 
+        // view the employee details
+        $(document).on('click', '.viewStudentBtn', function () {
+
+            var student_id = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "code.php?student_id=" + student_id,
+                success: function (response) {
+
+                    var res = jQuery.parseJSON(response);
+                    if(res.status == 404) {
+
+                        alert(res.message);
+                    }else if(res.status == 200){
+
+                        $('#view_fname').text(res.data.fname);
+                        $('#view_lname').text(res.data.lname);
+                        $('#view_email').text(res.data.email);
+                        $('#view_password').text(res.data.password);
+                        $('#studentViewModal').modal('show');
+                    }
+                }
+            });
+            });
+
+
+
         // delete the department
         $(document).on('click', '.deleteStudentBtn', function (e) {
             e.preventDefault();
-
-            if(confirm('Are you sure you want to delete this data?'))
+            
+            if(confirm('Are you sure you want to delete this department?'))
             {
                 var department_id = $(this).val();
                 $.ajax({
                     type: "POST",
                     url: "code.php",
                     data: {
-                        'delete_department': true,
-                        'department_id': department_id
-                    },
+                    'delete_department': true,
+                    'department_id': department_id
+                   },
                     success: function (response) {
 
                         var res = jQuery.parseJSON(response);
@@ -145,5 +204,6 @@
                 });
             }
         });
+    
 </script>
     
