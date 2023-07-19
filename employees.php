@@ -56,7 +56,60 @@ require __DIR__ . "/config/database.php";
         </div>
     </div>
 </div>
-<!-- Add new employee modal -->
+
+<!-- Update employee modal -->
+<div class="modal fade" id="employeeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="updateEmployee">
+            <div class="modal-body">
+
+                <div id="errorMessageUpdate" class="alert alert-warning d-none"></div>
+
+                <input type="hidden" name="employee_id" id="employee_id" >
+
+                <div class="mb-3">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" class="form-control" id="name"/>
+                </div>
+                <div class="mb-3">
+                    <label for="department">Department</label>
+                 <!-- select relevant department from the database -->
+                 <select name="department" id="department">
+                    <option value="">Select Department</option>
+                    <?php
+                    $dept = "SELECT * FROM department ORDER BY Name asc";
+                    $result = mysqli_query($conn, $dept);
+                    if (mysqli_num_rows($result) > 0) :
+                        while ($row = mysqli_fetch_assoc($result)) :?>
+                            <option value="<?php echo $row['Name']?>">
+                                <?php echo $row['Name']?>
+                            </option>
+                        <?php endwhile?>
+                        <?php endif?>
+                 </select>
+                </div>
+                <div class="mb-3">
+                    <label for="designation">Designation</label>
+                    <input type="text" name="designation" class="form-control" id="designation"/>
+                </div>
+                <div class="mb-3">
+                    <label for="salary">Salary</label>
+                    <input type="text" name="salary" class="form-control" id="salary"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update Employee</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 
 <!-- View employee Modal -->
 <div class="modal fade" id="employeeViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,7 +144,6 @@ require __DIR__ . "/config/database.php";
         </div>
     </div>
 </div>
-
 
 <div class="container-fluid">
     <div class="row mt-5">
@@ -232,6 +284,74 @@ require __DIR__ . "/config/database.php";
             });
         });
 
+        // update employee details
+        $(document).on('click', '.editEmployeeBtn', function () {
+
+            var employee_id = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: "code.php?employee_id=" + employee_id,
+                success: function (response) {
+
+                    var res = jQuery.parseJSON(response);
+                    if(res.status == 404) {
+                        alert(res.message);
+                    }
+                    else if(res.status == 200){
+
+                        $('#employee_id').val(res.data.id);
+                        $('#name').val(res.data.FullName);
+                        $('#department').val(res.data.Department);
+                        $('#designation').val(res.data.Designation);
+                        $('#salary').val(res.data.Salary);
+
+                        $('#employeeEditModal').modal('show');
+                    }
+
+                }
+            });
+
+        });
+
+        $(document).on('submit', '#updateEmployee', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            formData.append("update_employee", true);
+
+            $.ajax({
+                type: "POST",
+                url: "code.php",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    
+                    var res = jQuery.parseJSON(response);
+                    if(res.status == 422) {
+                        $('#errorMessageUpdate').removeClass('d-none');
+                        $('#errorMessageUpdate').text(res.message);
+
+                    }else if(res.status == 200){
+
+                        $('#errorMessageUpdate').addClass('d-none');
+
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success(res.message);
+                        
+                        $('#employeeEditModal').modal('hide');
+                        $('#updateEmployee')[0].reset();
+
+                        $('#myTable').load(location.href + " #myTable");
+
+                    }else if(res.status == 500) {
+                        alert(res.message);
+                    }
+                }
+            });
+
+        });
 
         // delete employee
         $(document).on('click', '.deleteEmployeeBtn', function (e) {
