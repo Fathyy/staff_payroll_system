@@ -1,4 +1,5 @@
 <?php
+session_start();
 require __DIR__ . "/config/database.php";
 //Process the form to create a department
 if(isset($_POST['save_department']))
@@ -130,6 +131,22 @@ if(isset($_GET['employee_id']))
             'data' => $employee
         ];
         echo json_encode($res);
+
+        // Put the individual values in a session to be accessed from diff pages
+        $name = $employee['FullName'];
+        $department = $employee['Department'];
+        $designation =$employee['Designation'];
+        $salary = $employee['Salary'];
+        
+
+        $_SESSION['employee'] = array(
+            'name'=>$name,
+            'department'=>$department,
+            'designation'=>$designation,
+            'salary'=>$department
+        );
+
+        $_SESSION['salary'] = $employee['Salary'];
         return;
     }
     else
@@ -149,7 +166,7 @@ if(isset($_POST['update_employee']))
     $employee_id = mysqli_real_escape_string($conn, $_POST['employee_id']);
 
     $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $department = $_POST['department'];
+    $department = mysqli_real_escape_string($conn, $_POST['department']);
     $designation = mysqli_real_escape_string($conn, $_POST['designation']);
     $salary = mysqli_real_escape_string($conn, $_POST['salary']);
 
@@ -164,9 +181,8 @@ if(isset($_POST['update_employee']))
         return;
     }
 
-    $query = "UPDATE employees SET FullName='$fname', Department='$department', Designation='$designation', 
-    Salary='$salary' 
-                WHERE id='$employee_id'";
+    $query = "UPDATE employees SET FullName='$name', Department='$department', Designation='$designation', 
+    Salary='$salary' WHERE id='$employee_id'";
     $query_run = mysqli_query($conn, $query);
 
     if($query_run)

@@ -70,7 +70,7 @@ require __DIR__ . "/config/database.php";
 
                 <div id="errorMessageUpdate" class="alert alert-warning d-none"></div>
 
-                <input type="hidden" name="employee_id" id="employee_id" >
+                <input type="hidden" name="employee_id" id="employee_id">
 
                 <div class="mb-3">
                     <label for="name">Full Name</label>
@@ -121,23 +121,97 @@ require __DIR__ . "/config/database.php";
         </div>
             <div class="modal-body">
 
-                <div class="mb-3">
-                    <label for="">Full Name</label>
-                    <p id="view_fname" class="form-control"></p>
+            <input type="hidden" name="employee_id" id="employee_id">
+
+            <!-- Show details of the employee -->
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label><b>Full Name:</b></label>
+                        <p id="view_fname"></p>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label><b>Department:</b></label>
+                        <p id="view_department"></p>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="">Department</label>
-                    <p id="view_department" class="form-control"></p>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label><b>Designation:</b></label>
+                        <p id="view_designation"></p>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label><b>Salary:</b></label>
+                        <p id="view_salary"></p>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="">Designation</label>
-                    <p id="view_designation" class="form-control"></p>
-                </div>
-                <div class="mb-3">
-                    <label for="">Salary</label>
-                    <p id="view_salary" class="form-control"></p>
+
+                <!-- show the allowances, deductions info of the employee -->
+                <div class="card p-2">
+                    <div class="row">
+                        <!-- allowances -->
+                        <div class="col-md-6">
+                            <h4><b>Allowances</b></h4>
+                            <?php 
+                            $total_allowances = 0;
+                            $food = 4000;
+                            $transport = 2000;
+                            $personal_relief = 2400;
+                            $total_allowances = $food + $transport + $personal_relief;
+                            
+                            ?>
+                            <p>Food Ksh<?php echo $food ?></p>
+                            <p>Transport: Ksh<?php echo $transport ?></p>
+                            <p>Personal Relief: Ksh<?php echo $personal_relief ?></p>
+                            <p>Total Allowances: Ksh<b><?php echo $total_allowances ?></b></p>
+
+                        </div>
+                        <!-- deductions -->
+                        <div class="col-md-6">
+                            <h4><b>Deductions</b></h4>
+                            <!-- get the salary from db -->
+                            <?php
+                            if (isset($_SESSION['employee'])) :
+                                $name = $_SESSION['employee']['name'];
+                                $department = $_SESSION['employee']['department'];
+                                $designation = $_SESSION['employee']['designation'];
+                                $salaryy = $_SESSION['employee']['salary'];
+
+                                $paye = 0;
+                                $nhif = 1700;
+                                $nssf = 1080;
+                                $total_deductions = 0;
+                                // calculate PAYE of an individual
+                                $first_bracket = (0.1*24000);
+                                $second_bracket =(0.25* 8333);
+                                $third_bracket =($salaryy -32333) * 0.3;
+                                $paye = round($first_bracket + $second_bracket + $third_bracket);
+                                $total_deductions = $paye + $nhif + $nssf;
+                                ?>
+                                <p>PAYE: <?php echo $paye?></p>
+                                <p>NHIF: <?php echo $nhif?></p>
+                                <p>NSSF: <?php echo $nssf?></p>
+                                <p><b>Total deductions: <?php echo $total_deductions?></b></p>
+                        </div>
+                        <?php
+                        // calulate the net pay
+                        $net_pay = ($salaryy + $total_allowances) - $total_deductions;   
+                        ?>
+                        <h5>Net Pay: <?php echo $net_pay?></h5>
+                    </div>
+                    <!-- insert this details into the database to be retrived from the payslips page -->
+                    <?php
+
+                    $query = "INSERT INTO payslips(FullName, Department, Designation, Food, Transport, relief, NHIF, NSSF, PAYE	
+                    ) VALUES(''$name', '$department', '$designation', $food', '$transport', '$personal_relief',
+                    '$nhif', '$nssf', '$paye')";
+                    $query_run($conn, $query);
+                            
+                    ?>
+                    <?php endif ?>
+
                 </div>
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
@@ -191,17 +265,17 @@ require __DIR__ . "/config/database.php";
                                             <center>
                                             <!-- Edit -->
                                             <button class="editEmployeeBtn btn btn-sm btn-outline-primary w-auto" type="button"
-                                            value="<?php $row['id']?>">
+                                            value="<?php echo $row['id']?>">
                                             <i class="fa-regular fa-pen-to-square"></i></button>
 
                                             <!-- View Employee -->
                                             <button class="viewEmployeeBtn btn btn-sm btn-outline-warning w-auto" type="button"
-                                            value="<?php $row['id']?>">
+                                            value="<?php echo $row['id']?>">
                                             <i class="fa-regular fa-eye"></i></button>
 
                                             <!-- Delete Employee -->
                                             <button class="deleteEmployeeBtn btn btn-sm btn-outline-danger w-auto" type="button"
-                                            value="<?php $row['id']?>">
+                                            value="<?php echo $row['id']?>">
                                             <i class="fa-solid fa-trash"></i></button>
                                             </center>
                                         </td>
