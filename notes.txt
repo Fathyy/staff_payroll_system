@@ -1,0 +1,11 @@
+<!-- insert this details into the database to be retrived from the payslips page -->
+<?php
+
+$query = "INSERT INTO payslips(FullName, Department, Designation, Food, Transport, relief, NHIF, NSSF, PAYE	
+) VALUES('$name', '$department', '$designation', $food', '$transport', '$personal_relief',
+'$nhif', '$nssf', '$paye')";
+$query_run($conn, $query);
+        
+?>
+
+

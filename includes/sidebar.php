@@ -43,7 +43,7 @@ include_once __DIR__ . "/header.php";?>
                         </li>
 
                         <li class="nav-item py-2 py-sm-0">
-                            <a href="admin-index.php?page=payslip" class="nav-link text-white">
+                            <a href="admin-index.php?page=payroll-list" class="nav-link text-white">
                             <i class="fa-solid fa-receipt"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">Payslip</span>
                                 </a>
