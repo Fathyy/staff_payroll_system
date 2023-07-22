@@ -3,15 +3,14 @@ session_start();
 require __DIR__ . "/config/database.php";
 
 if (isset($_POST['signup'])) {
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+    $fullName = $_POST['fullName'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
     $error=[];
 
-    if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($cpassword)) {
+    if (empty($fullName) || empty($email) || empty($password) || empty($cpassword)) {
         $_SESSION['error'] = "This field cannot be empty";
     }
 
@@ -34,18 +33,11 @@ if (isset($_POST['signup'])) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     if (count($error) === 0) {
-        # insert user into the DB
-        $sql = "INSERT INTO users(fname, lname, email, password_hash) VALUES('$fname', '$lname', '$email', '$password_hash')";
+        # if there is no error, insert user into the DB
+        $sql = "INSERT INTO employees(FullName, Email, password_hash) VALUES('$fullName', '$email', '$password_hash')";
         $result = mysqli_query($conn, $sql);
                 header("Location: login.php");
                 exit;
-        // if (mysqli_num_rows($result) > 0) {
-        //     if ($row = mysqli_fetch_assoc($result)) {
-        //         // if the person has signed up, take them to the login page
-                    
-        //     }
-            
-        
     }
     else{
         // stay in the signup page if there are errors
@@ -61,24 +53,26 @@ elseif (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email ='$email'";
+    $sql = "SELECT * FROM employees WHERE Email ='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password_hash'])) {
                 $id = $row['id'];
-                $fname =$row['fname'];
+                $fname =$row['FullName'];
                 $role = $row['role'];
 
                 $_SESSION['auth'] = array(
                     'id'=>$id,
                     'fname'=>$fname
                 );
+                // if the role is 1, that's an admin 
                 $_SESSION['role'] = $role;
                 if ($role == 1) {
                     header("Location: admin-index.php");
                     exit;
                 }
+                // otherwise take to user homepage
                 header("Location: index.php");
                 exit;
             }

@@ -5,7 +5,10 @@ require_once __DIR__ . "/includes/header.php";
 
 <div class="container">
     <div class="row flex-container justify-content-center align-items-center vh-100">
-        <div class="col-md-6 border py-4 px-5">
+        <div class="col-md-6 py-4 px-5" style="border: 1px solid black;">
+        <div class="img">
+            <img src="images\red-stone-logo.jpg" alt="">
+        </div>
             <h3 class="header">Signup Form</h3>
             <form action="action.php" method="post">
                 <?php
@@ -14,31 +17,18 @@ require_once __DIR__ . "/includes/header.php";
                     unset($_SESSION['errors']);
                 }
                 ?>
-                <!-- row for first name and last name -->
-                <div class="row">
-                    <div class="col-md-6">
+                <!-- Full name -->
                         <div class="mb-3">
-                            <label for="fname" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="fname" name="fname">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName">
                         </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="lname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lname" name="lname">
-                            </div>
-                        </div>
-                    
-                </div>
                 
                 <!-- email -->
-                <div class="row">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" id="email" name="email">
                         <small style="color:red"><?php echo $error['email'] ?? ""?></small>
                     </div>
-                </div>
 
                 <div class="row">
                     <div class="col-md-6">

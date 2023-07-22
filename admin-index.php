@@ -1,5 +1,5 @@
 <?php
-// The user should be logged in to access this page
+// The admin should be logged in to access this page
 session_start();
 if (!isset($_SESSION['auth'])) {
     header("Location: login.php");

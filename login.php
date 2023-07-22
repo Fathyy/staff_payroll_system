@@ -3,7 +3,10 @@ require_once __DIR__ . "/includes/header.php";?>
 
 <div class="container">
     <div class="row flex-container justify-content-center align-items-center vh-100">
-        <div class="col-md-6 border py-4 px-5">
+        <div class="col-md-6 py-4 px-5" style="border: 1px solid black;">
+        <div class="img">
+            <img src="images\red-stone-logo.jpg" alt="">
+        </div>
             <h3 class="header">Login Form</h3>
             <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Holy guacamole!</strong> You should check in on some of those fields below.
