@@ -1,22 +1,18 @@
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Name
-    </button>
-    <ul class="dropdown-menu">
-    <?php while ($row = mysqli_fetch_assoc($result)) :?>
-        <li><a href="payslip.php?id=<?php echo $row['id']?>" class="dropdown-item">
-        <?php echo $row['FullName']?></a></li>
-        <?php endwhile?>
-    </ul>
-</div>  
+require 'vendor/autoload.php';
+require_once 'dompdf/autoload.inc.php';
 
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
 
-<?php
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml('hello world');
 
-    // insert payslip details into the database
-    $query = "INSERT INTO payslips(FullName, Department, Designation, Food, Transport, relief, NHIF, NSSF, PAYE) 
-    VALUES('$name', '$Department', '$Designation', '$food', '$transport', '$personal_relief',
-    '$nhif', '$nssf', '$paye')";
-    $query_run = mysqli_query($conn, $query);
-    ?>  
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'landscape');
 
+// Render the HTML as PDF
+$dompdf->render();
+
+// Output the generated PDF to Browser
+$dompdf->stream();
