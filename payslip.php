@@ -1,14 +1,16 @@
 <?php
 include_once __DIR__ . "/includes/header.php";
 require __DIR__ . "/config/database.php";
-// select employee details
-if (isset($_GET['id'])) :
-    $id = $_GET['id'];
-    $sql = "SELECT * from employees where id ='$id'";
+if (isset($_POST['payslip'])) :
+    $emp_name =$_POST['employee_list'];
+    $month =$_POST['month'];
+
+
+    // get details of the employee chosen
+    $sql = "SELECT * from employees where FullName ='$emp_name'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) :
         $row = mysqli_fetch_assoc($result);
-        $name = $row['FullName'];
         $Department = $row['Department'];
         $Designation = $row['Designation'];
         $salary = $row['Salary'];
@@ -37,96 +39,107 @@ if (isset($_GET['id'])) :
 
         <!-- The payslip -->
         <div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="text-center lh-1 mb-2">
-                <h6 class="fw-bold mb-0"> Payslip </h6><br><span class="fw-normal fw-bold">Red stone Enterprises 
-                    <br>
-                    Kimathi Street. Nairobi, Kenya
-                </span>
-            </div>
             <div class="row">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">EMP Code</span> <small class="ms-3">39124</small> </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">EMP Name</span> <small class="ms-3"><?php echo $name?></small> </div>
-                        </div>
+                <div class="col-md-12">
+                    <div class="text-center lh-1 mb-2">
+                        <h6 class="fw-bold mb-0"> Payslip </h6><br><span class="fw-normal fw-bold">Red stone Enterprises 
+                            <br>
+                            Kimathi Street. Nairobi, Kenya
+                        </span>
+                        <h6><?php echo $month?></h6>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">PF No.</span> <small class="ms-3">101523065714</small> </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">EMP Code</span> <small class="ms-3">39124</small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">EMP Name</span> <small class="ms-3"><?php echo $emp_name?></small> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">PF No.</span> <small class="ms-3">101523065714</small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">NOD</span> <small class="ms-3">28</small> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">ESI No.</span> <small class="ms-3"></small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Mode of Pay</span> <small class="ms-3">Bank Transfer</small> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Designation</span> <small class="ms-3"><?php echo $Designation?></small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Ac No.</span> <small class="ms-3">*******0701</small> </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">NOD</span> <small class="ms-3">28</small> </div>
-                        </div>
+                        <table class="mt-4 table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th scope="col">Earnings</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Deductions</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Food</th>
+                                    <td><?php echo $food ?></td>
+                                    <td>PAYE</td>
+                                    <td><?php echo $paye ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Transport</th>
+                                    <td><?php echo $transport ?></td>
+                                    <td>NSSF</td>
+                                    <td><?php echo $nssf ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Personal relief</th>
+                                    <td><?php echo $personal_relief ?></td>
+                                    <td>NHIF</td>
+                                    <td><?php echo $nhif ?></td>
+                                </tr>
+                
+                                <tr class="border-top">
+                                    <th scope="row">Total Allowance</th>
+                                    <td><?php echo $total_allowances ?></td>
+                                    <td>Total Deductions</td>
+                                    <td><?php echo $total_deductions ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">ESI No.</span> <small class="ms-3"></small> </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">Mode of Pay</span> <small class="ms-3">Bank Transfer</small> </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">Designation</span> <small class="ms-3"><?php echo $Designation?></small> </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div> <span class="fw-bolder">Ac No.</span> <small class="ms-3">*******0701</small> </div>
-                        </div>
+                        <div class="d-flex justify-content-end"> <br> <span class="fw-bold">Net Pay: <?php echo $net_pay ?></span> </div>
                     </div>
                 </div>
-                <table class="mt-4 table table-bordered">
-                    <thead class="bg-dark text-white">
-                        <tr>
-                            <th scope="col">Earnings</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Deductions</th>
-                            <th scope="col">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Food</th>
-                            <td><?php echo $food ?></td>
-                            <td>PAYE</td>
-                            <td><?php echo $paye ?></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Transport</th>
-                            <td><?php echo $transport ?></td>
-                            <td>NSSF</td>
-                            <td><?php echo $nssf ?></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Personal relief</th>
-                            <td><?php echo $personal_relief ?></td>
-                            <td>NHIF</td>
-                            <td><?php echo $nhif ?></td>
-                        </tr>
-        
-                        <tr class="border-top">
-                            <th scope="row">Total Allowance</th>
-                            <td><?php echo $total_allowances ?></td>
-                            <td>Total Deductions</td>
-                            <td><?php echo $total_deductions ?></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-            <div class="row">
-                <div class="d-flex justify-content-end"> <br> <span class="fw-bold">Net Pay: <?php echo $net_pay ?></span> </div>
-            </div>
-        </div>
-    </div>
-</div>   
+        </div>   
         
     <?php endif ?>
-<?php endif?>
+   
 
+    <?php
+    // insert payslip details into the database
+    $query = "INSERT INTO payslip(FullName, Department, Designation, Date_issued, Food, Transport, Relief, 
+    total_allowance, PAYE, NHIF, NSSF, total_deductions) 
+    VALUES('$emp_name', '$Department', '$Designation', '$month', '$food', '$transport', '$personal_relief',
+    '$total_allowances', '$paye', '$nhif', '$nssf', '$total_deductions')";
+    $query_run = mysqli_query($conn, $query);
+    ?>  
+  
 
+<?php endif ?>
 <?php include_once __DIR__ . "/includes/footer.php";?>

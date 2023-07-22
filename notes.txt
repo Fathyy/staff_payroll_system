@@ -1,11 +1,22 @@
-<!-- insert this details into the database to be retrived from the payslips page -->
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Name
+    </button>
+    <ul class="dropdown-menu">
+    <?php while ($row = mysqli_fetch_assoc($result)) :?>
+        <li><a href="payslip.php?id=<?php echo $row['id']?>" class="dropdown-item">
+        <?php echo $row['FullName']?></a></li>
+        <?php endwhile?>
+    </ul>
+</div>  
+
+
 <?php
 
-$query = "INSERT INTO payslips(FullName, Department, Designation, Food, Transport, relief, NHIF, NSSF, PAYE	
-) VALUES('$name', '$department', '$designation', $food', '$transport', '$personal_relief',
-'$nhif', '$nssf', '$paye')";
-$query_run($conn, $query);
-        
-?>
-
+    // insert payslip details into the database
+    $query = "INSERT INTO payslips(FullName, Department, Designation, Food, Transport, relief, NHIF, NSSF, PAYE) 
+    VALUES('$name', '$Department', '$Designation', '$food', '$transport', '$personal_relief',
+    '$nhif', '$nssf', '$paye')";
+    $query_run = mysqli_query($conn, $query);
+    ?>  
 

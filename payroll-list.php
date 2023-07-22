@@ -6,37 +6,40 @@ require __DIR__ . "/config/database.php";
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    <tbody>
-                        <tr>
-                            <td>
-                            <?php
-                            // Get the names as a dropdown list       
+                <div class="card-header">
+                    <h4>Generate Payslip for employee</h4>
+                </div>
+                <div class="card-body">
+                    <form action="payslip.php" method="post" class="row">
+                        <div class="mb-3 col-md-4">
+                        <select name="employee_list" class="form-select" aria-label="Default select example">
+                            <option selected>Select Employee</option>
+                            <?php 
+                            // Choose employee to process his/her payslip   
                             $sql = "SELECT * from employees";
                             $result =mysqli_query($conn, $sql);
-                            if (mysqli_num_rows($result) > 0) :?>
-                                    <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Name
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                    <?php while ($row = mysqli_fetch_assoc($result)) :?>
-                                        <li><a href="payslip.php?id=<?php echo $row['id']?>" class="dropdown-item">
-                                        <?php echo $row['FullName']?></a></li>
-                                        <?php endwhile?>
-                                    </ul>
-                                </div> 
-                                
-                            <?php endif ?>                            
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            if (mysqli_num_rows($result) > 0) :
+                                while ($row = mysqli_fetch_assoc($result)) :?>
+                                    <option value="<?php echo $row['FullName']?>">
+                                        <?php echo $row['FullName']?>
+                                    </option>
+                                <?php endwhile?>
+                            <?php endif ?>
+                        </select> 
+                        </div>
+
+                        <!--month and year  -->
+                        <div class="mb-3 col-md-4">
+                            <label for="month">Issued Date</label>
+                            <input type="month" name="month" id="month" value="2023-01">
+                        </div>
+
+                        <div class="mb-3 col-md-4">
+                            <!-- generate payslip button -->
+                            <input type="submit" value="Generate payslip" name="payslip" class="btn btn-warning col-12">
+                        </div>    
+                    </form>    
+                </div>           
             </div>
         </div>
     </div>
