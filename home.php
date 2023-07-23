@@ -13,7 +13,7 @@ include_once __DIR__ . "/includes/header.php";?>
                 </div>
 
                 <div class="card-body">
-                    <h5>Hello you can finish setting up your account <a href="user-account.php">here</a></h5>
+                    <h5>Hello, Complete your profile in the My Accounts section to get started</h5>
                 </div>
             </div>
         </div>     
