@@ -5,8 +5,10 @@ if (!isset($_SESSION['auth'])) {
     header("Location: login.php");
     exit;
 }
-require __DIR__ . '/includes/user-sidebar.php';
 ?>
+
+<?php require __DIR__ . '/includes/user-sidebar.php';?>
+
 
 <!-- main-section -->
 <main id="view-user" style="

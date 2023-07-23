@@ -8,21 +8,21 @@ include_once __DIR__ . "/header.php";?>
                     </a>
                     <ul class="nav nav-pills flex-column mt-4">
                         <li class="nav-item py-2 py-sm-0">
-                            <a href="admin-index.php?page=home" class="nav-link text-white">
+                            <a href="index.php?page=home" class="nav-link text-white">
                             <i class="fa-solid fa-gauge"></i>
                                 <span class="fs-4 d-none d-sm-inline ms-3">Home</span>
                                 </a>
                         </li>
 
                         <li class="nav-item py-2 py-sm-0">
-                            <a href="admin-index.php?page=user-payslip" class="nav-link text-white">
+                            <a href="index.php?page=user-payslip" class="nav-link text-white">
                             <i class="fa-solid fa-receipt"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">My Payslips</span>
                                 </a>
                         </li>
 
                         <li class="nav-item py-2 py-sm-0">
-                            <a href="admin-index.php?page=user-sidebar" class="nav-link text-white">
+                            <a href="index.php?page=user-account" class="nav-link text-white">
                             <i class="fa-solid fa-receipt"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">My Account</span>
                                 </a>
