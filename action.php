@@ -89,27 +89,139 @@ elseif (isset($_POST['login'])) {
 }
 
 //process the allowance form
-elseif (isset($_POST['allowance'])) {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
+else if(isset($_POST['save_allowance']))
+{
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $amount = mysqli_real_escape_string($conn, $_POST['amount']);
 
-    $sql = "INSERT INTO allowance(name, description)
-    VALUES('$name', '$description')";
+    if($name == NULL || $amount == NULL)
+    {
+        $res = [
+            'status' => 422,
+            'message' => 'This field is mandatory'
+        ];
+        echo json_encode($res);
+        return;
+    }
+
+    $sql = "INSERT INTO allowance(name, Amount)
+    VALUES('$name', '$amount')";
     $result = mysqli_query($conn, $sql);
-        header("Location: admin-index.php");
-        exit;
+
+    if($result)
+    {
+        $res = [
+            'status' => 200,
+            'message' => 'Allowance Created Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 500,
+            'message' => 'Allowance Not Created'
+        ];
+        echo json_encode($res);
+        return;
+    }
 }
 
-// process the expenses
-elseif (isset($_POST['expenses'])) {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
+// delete an allowance
+else if(isset($_POST['delete_allowance']))
+{
+    $allowance_id = mysqli_real_escape_string($conn, $_POST['allowance_id']);
 
-    $sql = "INSERT INTO expenses(name, description)
-    VALUES('$name', '$description')";
+    $query = "DELETE FROM allowance WHERE id='$allowance_id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if($query_run)
+    {
+        $res = [
+            'status' => 200,
+            'message' => 'Allowance Deleted Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 500,
+            'message' => 'Allowance Not Deleted'
+        ];
+        echo json_encode($res);
+        return;
+    }
+}
+
+
+// process a deduction
+else if(isset($_POST['save_deduction']))
+{
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $amount = mysqli_real_escape_string($conn, $_POST['amount']);
+
+    if($name == NULL || $amount == NULL)
+    {
+        $res = [
+            'status' => 422,
+            'message' => 'This field is mandatory'
+        ];
+        echo json_encode($res);
+        return;
+    }
+
+    $sql = "INSERT INTO deductions(name, Amount)
+    VALUES('$name', '$amount')";
     $result = mysqli_query($conn, $sql);
-        header("Location: admin-index.php");
-        exit;
-    
+
+    if($result)
+    {
+        $res = [
+            'status' => 200,
+            'message' => 'Deduction Created Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 500,
+            'message' => 'Deduction Not Created'
+        ];
+        echo json_encode($res);
+        return;
+    }
+}
+
+// delete a deduction
+else if(isset($_POST['delete_deduction']))
+{
+    $deduction_id = mysqli_real_escape_string($conn, $_POST['deduction_id']);
+
+    $query = "DELETE FROM deductions WHERE id='$deduction_id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if($query_run)
+    {
+        $res = [
+            'status' => 200,
+            'message' => 'deduction Deleted Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 500,
+            'message' => 'deduction Not Deleted'
+        ];
+        echo json_encode($res);
+        return;
+    }
 }
 ?>

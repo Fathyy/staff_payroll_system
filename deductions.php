@@ -8,14 +8,14 @@ require __DIR__ . "/config/database.php";
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Employee Allowances</h4>
+                    <h4>Employee Deductions</h4>
                 </div>
 
                 <div class="card-body d-flex justify-content-between">
-                    <!-- form to create allowance -->
+                    <!-- form to create deduction -->
                     <div class="col-md-6 border" style="width:45%;">
-                        <form action="action.php" method="post" class="p-3" id="allowanceForm">
-                            <input type="hidden" name="allowance_id" id="allowance_id">
+                        <form action="action.php" method="post" class="p-3" id="deductionsForm">
+                        <input type="hidden" name="deduction_id" id="deduction_id">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" name="name" id="name" class="form-control">
@@ -26,12 +26,12 @@ require __DIR__ . "/config/database.php";
                                 <input type="text" name="amount" id="amount" class="form-control">
                             </div>
 
-                            <button type="submit" id="submit" class="btn btn-primary btn-lg">Create Allowance</button>
+                            <button type="submit" id="submit" class="btn btn-primary btn-lg">Create deduction</button>
                         </form>
                     </div>
 
                     <div class="col-md-6" style="width:45%;">
-                        <!-- display the allowance information on this side -->
+                        <!-- display the deductions information on this side -->
                         <table class="table table-bordered" id="myTable">
                             <thead>
                                 <tr>
@@ -42,19 +42,18 @@ require __DIR__ . "/config/database.php";
                             </thead>
                             <tbody>
                                 <?php
-                                // display allowance from the db
-                                $sql = "SELECT * FROM allowance";
+                                // display deductions from the db
+                                $sql = "SELECT * FROM deductions";
                                 $result = mysqli_query($conn, $sql);
                                 if (mysqli_num_rows($result) > 0) :
                                     while ($row = mysqli_fetch_assoc($result)) :?>
                                     <tr>
                                         <td><?php echo $row['name']?></td>
                                         <td><?php echo $row['Amount']?></td>
-                                        <!-- edit or delete actions for the allowance -->
+                                        <!-- edit or delete actions for the deductions -->
                                         <td>
-
-                                            <!-- Delete Allowance -->
-                                            <button class="deleteAllowanceBtn btn btn-sm btn-outline-danger w-auto" type="button"
+                                            <!-- Delete deduction -->
+                                            <button class="deleteDeductionBtn btn btn-sm btn-outline-danger w-auto" type="button"
                                             value="<?php echo $row['id']?>">
                                             <i class="fa-solid fa-trash"></i></button>
                                         </td>
@@ -77,13 +76,12 @@ require __DIR__ . "/config/database.php";
 </div>
 
 <?php include_once __DIR__ . "/includes/footer.php"?>
-
 <script>
-    $(document).on('submit', '#allowanceForm', function (e) {
+    $(document).on('submit', '#deductionsForm', function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
-            formData.append("save_allowance", true);
+            formData.append("save_deduction", true);
 
             $.ajax({
                 type: "POST",
@@ -98,7 +96,7 @@ require __DIR__ . "/config/database.php";
                         $('#empErrorMessage').text(res.message);
 
                     }else if(res.status == 200){
-                        $('#allowanceForm')[0].reset();
+                        $('#deductionsForm')[0].reset();
                         alertify.set('notifier','position', 'top-right');
                         alertify.success(res.message);
 
@@ -112,19 +110,19 @@ require __DIR__ . "/config/database.php";
 
         });
 
-        // delete the allowance
-        $(document).on('click', '.deleteAllowanceBtn', function (e) {
+        // delete the deduction
+        $(document).on('click', '.deleteDeductionBtn', function (e) {
             e.preventDefault();
 
-            if(confirm('Are you sure you want to delete this allowance?'))
+            if(confirm('Are you sure you want to delete this deduction?'))
             {
-                var allowance_id = $(this).val();
+                var deduction_id = $(this).val();
                 $.ajax({
                     type: "POST",
                     url: "action.php",
                     data: {
-                        'delete_allowance': true,
-                        'allowance_id': allowance_id
+                        'delete_deduction': true,
+                        'deduction_id': deduction_id
                     },
                     success: function (response) {
 

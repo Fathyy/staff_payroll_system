@@ -5,9 +5,7 @@ require_once __DIR__ . "/includes/header.php";?>
 <div class="container">
     <div class="row flex-container justify-content-center align-items-center vh-100">
         <div class="col-md-6 py-4 px-5" style="border: 1px solid black;">
-        <div class="img">
-            <img src="images\red-stone-logo.jpg" alt="">
-        </div>
+        <h2 style="text-align:center;">Staff Payroll system</h2>
             <h3 class="header">Login Form</h3>
             <form action="action.php" method="post">
                 <!-- email -->
