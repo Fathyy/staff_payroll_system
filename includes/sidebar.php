@@ -30,14 +30,14 @@ include_once __DIR__ . "/header.php";?>
 
                         <li class="nav-item py-2 py-sm-0">
                             <a href="admin-index.php?page=allowance" class="nav-link text-white">
-                            <i class="fa-solid fa-users"></i> 
+                            <i class="fa-solid fa-money-bill"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">Allowance</span>
                                 </a>
                         </li>
 
                         <li class="nav-item py-2 py-sm-0">
                             <a href="admin-index.php?page=expenses" class="nav-link text-white">
-                            <i class="fa-solid fa-users"></i> 
+                            <i class="fa-solid fa-money-check-dollar"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">Expenses</span>
                                 </a>
                         </li>

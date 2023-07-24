@@ -55,6 +55,7 @@ elseif (isset($_POST['login'])) {
 
     $sql = "SELECT * FROM employees WHERE Email ='$email'";
     $result = mysqli_query($conn, $sql);
+    // if user exists in the database
     if (mysqli_num_rows($result) > 0) {
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password_hash'])) {
@@ -78,8 +79,12 @@ elseif (isset($_POST['login'])) {
             }
         } 
     }
+    // if user is not found in the database
     else {
-        $_SESSION['error'] = "Invalid credentials!";
+        $_SESSION['error'] = "User not found!";
+        header("Location: login.php");
+        exit;
+
     }
 }
 

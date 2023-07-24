@@ -28,10 +28,10 @@ require __DIR__ . "/config/database.php";
                         </select> 
                         </div>
 
-                        <!--month and year  -->
+                        <!--date  -->
                         <div class="mb-3 col-md-4">
-                            <label for="month">Issued Date</label>
-                            <input type="month" name="month" id="month" value="2023-01">
+                            <label for="date">Issued Date</label>
+                            <input type="date" name="date" id="date">
                         </div>
 
                         <div class="mb-3 col-md-4">

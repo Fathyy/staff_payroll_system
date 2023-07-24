@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . "/includes/header.php";?>
 
 <div class="container">
@@ -8,10 +9,6 @@ require_once __DIR__ . "/includes/header.php";?>
             <img src="images\red-stone-logo.jpg" alt="">
         </div>
             <h3 class="header">Login Form</h3>
-            <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div> -->
             <form action="action.php" method="post">
                 <!-- email -->
                     <div class="mb-3">
@@ -38,3 +35,14 @@ require_once __DIR__ . "/includes/header.php";?>
 
 
 <?php require_once __DIR__ . "/includes/footer.php";?>
+
+<script>
+    // display invalid credential error
+    <?php 
+    if (isset($_SESSION['error'])) :?>
+        alertify.set('notifier','position', 'top-right');
+        alertify.success('<?php echo $_SESSION['error']?>');
+
+        unset($_SESSION['error']);
+    <?php endif?>    
+</script>
