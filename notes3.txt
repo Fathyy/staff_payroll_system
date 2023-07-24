@@ -94,3 +94,26 @@
         </div>  
         ';
         ?>
+
+
+
+
+
+
+
+        <?php
+        // insert payslip details into the database
+        $query = "INSERT INTO payslip(FullName, Department, Designation, Date_issued, Food, Transport, Relief, 
+        total_allowance, PAYE, NHIF, NSSF, total_deductions, Net_pay) 
+        VALUES('$emp_name', '$Department', '$Designation', '$date', '$food', '$transport', '$personal_relief',
+        '$total_allowances', '$paye', '$nhif', '$nssf', '$total_deductions', '$net_pay')";
+        $query_run = mysqli_query($conn, $query);
+        // Get the id of the last inserted record provided it has an auto increment function
+        $lastInsertedId = mysqli_insert_id($conn);
+        $selectQuery = "SELECT * FROM payslip WHERE id = '$lastInsertedId'";
+        $resultt = mysqli_query($conn, $query);
+        if (mysqli_num_rows($resultt) > 0) {
+            while($payslip = mysqli_fetch_assoc($resultt)) {
+
+            }
+        }

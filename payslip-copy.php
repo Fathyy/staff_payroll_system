@@ -1,9 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
-
 require __DIR__ . "/config/database.php";
 
 if (isset($_POST['payslip'])) :
@@ -43,29 +40,34 @@ if (isset($_POST['payslip'])) :
         $total_deductions = $paye + $nhif + $nssf;
         $net_pay = ($salary + $total_allowances) - $total_deductions;
         ?>
-        
-            <?php
-            $html ="";
-            $html .= '
-            <!-- The payslip -->
-            <!doctype html>
-            <html lang="en">
-            <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-            </head>
+    <?php endif ?>
 
-            <body>
+        <?php
+        // insert payslip details into the database
+        $query = "INSERT INTO payslip(FullName, Department, Designation, Date_issued, Food, Transport, Relief, 
+        total_allowance, PAYE, NHIF, NSSF, total_deductions, Net_pay) 
+        VALUES('$emp_name', '$Department', '$Designation', '$date', '$food', '$transport', '$personal_relief',
+        '$total_allowances', '$paye', '$nhif', '$nssf', '$total_deductions', '$net_pay')";
+        $query_run = mysqli_query($conn, $query);
+        // Get the id of the last inserted record provided it has an auto increment function
+        $lastInsertedId = mysqli_insert_id($conn);
+        $selectQuery = "SELECT * FROM payslip WHERE id = '$lastInsertedId'";
+        $resultt = mysqli_query($conn, $selectQuery);
+        if (mysqli_num_rows($resultt) > 0) {
+            while($payslip = mysqli_fetch_assoc($resultt)) {
+                $html ="";
+                $html .='
+
+            <!-- The payslip -->
             <div class="container mt-5 mb-5">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="text-center lh-1 mb-2">
-                            <h6 class="fw-bold mb-0"> Payslip </h6><br><span class="fw-normal fw-bold">Red stone Enterprises 
+                        <div class="text-center lh-1 mb-2" style="text-align:center;">
+                            <h6 class="fw-bold mb-0" style="margin-bottom: 1rem;"> Payslip </h6><br><span class="fw-normal fw-bold">Red stone Enterprises 
                                 <br>
                                 Kimathi Street. Nairobi, Kenya
                             </span>
-                            <h6> '.$date. '</h6>
-                            <img src="images\red-stone-logo.jpg" alt="" style="width:100%;">
+                            <h6> '.$payslip['Date_issued']. '</h6>
                         </div>
                         <div class="row">
                             <div class="col-md-10">
@@ -74,20 +76,20 @@ if (isset($_POST['payslip'])) :
                                         <div> <span class="fw-bolder">EMP Code</span> <small class="ms-3">39124</small> </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div> <span class="fw-bolder">EMP Name</span> <small class="ms-3">'.$emp_name.'</small> </div>
+                                        <div> <span class="fw-bolder">EMP Name</span> <small class="ms-3">'.$payslip['FullName'].'</small> </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div> <span class="fw-bolder">ID No.</span> <small class="ms-3">'.$National_id.'</small> </div>
+                                        <div> <span class="fw-bolder">ID No.</span> <small class="ms-3">77376363</small> </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div> <span class="fw-bolder">Gender</span> <small class="ms-3">'.$Gender.'</small> </div>
+                                        <div> <span class="fw-bolder">Gender</span> <small class="ms-3">Null</small> </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div> <span class="fw-bolder">Department</span> <small class="ms-3">'.$Department.'</small> </div>
+                                        <div> <span class="fw-bolder">Department</span> <small class="ms-3">'.$payslip['Department'].'</small> </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div> <span class="fw-bolder">Mode of Pay</span> <small class="ms-3">Bank Transfer</small> </div>
@@ -95,7 +97,7 @@ if (isset($_POST['payslip'])) :
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div> <span class="fw-bolder">Designation</span> <small class="ms-3">'.$Designation.'</small> </div>
+                                        <div> <span class="fw-bolder">Designation</span> <small class="ms-3">'.$payslip['Designation'].'</small> </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div> <span class="fw-bolder">Ac No.</span> <small class="ms-3">*******0701</small> </div>
@@ -114,70 +116,63 @@ if (isset($_POST['payslip'])) :
                                 <tbody>
                                     <tr>
                                         <th scope="row">Food</th>
-                                        <td>'.$food.'</td>
+                                        <td>'.$payslip['Food'].'</td>
                                         <td>PAYE</td>
-                                        <td>'.$paye.'</td>
+                                        <td>'.$payslip['PAYE'].'</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Transport</th>
-                                        <td>'.$transport.'</td>
+                                        <td>'.$payslip['Transport'].'</td>
                                         <td>NSSF</td>
-                                        <td>'.$nssf.'</td>
+                                        <td>'.$payslip['NSSF'].'</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Personal relief</th>
-                                        <td>'.$personal_relief.'</td>
+                                        <td>'.$payslip['Relief'].'</td>
                                         <td>NHIF</td>
-                                        <td> '.$nhif.'</td>
+                                        <td> '.$payslip['NHIF'].'</td>
                                     </tr>
                     
                                     <tr class="border-top">
                                         <th scope="row">Total Allowance</th>
-                                        <td>'.$total_allowances.'</td>
+                                        <td>'.$payslip['total_allowance'].'</td>
                                         <td>Total Deductions</td>
-                                        <td>'.$total_deductions.'</td>
+                                        <td>'.$payslip['total_deductions'].'</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="row">
-                            <div class="d-flex justify-content-end"> <br> <span class="fw-bold">Net Pay: '.$net_pay.'</span> </div>
+                            <div class="d-flex justify-content-end"> <br> <span class="fw-bold">Net Pay: '.$payslip['Net_pay'].'</span> </div>
                         </div>
                     </div>
                 </div>
             </div>  
-            </body>
-            </html> 
             ';
-            ?>
-
-        <?php
-        // insert payslip details into the database
-        $query = "INSERT INTO payslip(FullName, Department, Designation, Date_issued, Food, Transport, Relief, 
-        total_allowance, PAYE, NHIF, NSSF, total_deductions) 
-        VALUES('$emp_name', '$Department', '$Designation', '$date', '$food', '$transport', '$personal_relief',
-        '$total_allowances', '$paye', '$nhif', '$nssf', '$total_deductions')";
-        $query_run = mysqli_query($conn, $query);
-        ?> 
-
-    <?php
-    
-    $dompdf->loadHtml($html);
-
-    // (Optional) Setup the paper size and orientation
-    $dompdf->setPaper('A4', 'landscape');
-
-    // Render the HTML as PDF
-    $dompdf->render();
-
-    // Output the generated PDF to Browser
-    $dompdf->stream('Payslip.pdf', ['Attachment'=> 0]);
-
-    ?>
-
-    <?php endif ?>
+}
+        } 
+        ?>
 <?php endif ?>
     
+
+<?php
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
+
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml($html);
+
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'landscape');
+
+// Render the HTML as PDF
+$dompdf->render();
+
+ob_end_clean();
+// Output the generated PDF to Browser
+$dompdf->stream('Payslip.pdf', ['Attachment'=> 0]);
+?>
 
     
 

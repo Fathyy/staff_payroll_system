@@ -10,7 +10,7 @@ require __DIR__ . "/config/database.php";
                     <h4>Generate Payslip for employee</h4>
                 </div>
                 <div class="card-body">
-                    <form action="payslip.php" method="post" class="row">
+                    <form action="payslip-copy.php" method="post" class="row">
                         <div class="mb-3 col-md-4">
                         <select name="employee_list" class="form-select" aria-label="Default select example">
                             <option selected>Select Employee</option>
