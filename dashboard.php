@@ -50,6 +50,13 @@
 
     </div>
 </div>
+
+<!-- <footer class="footer">
+  <div class="container">
+    <p class="copyright-text">© Copyright 2023 Mohamed Abdi </p>
+  </div>
+</footer> -->
+
 <?php include_once __DIR__ . "/includes/footer.php";
 ?>
 

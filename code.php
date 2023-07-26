@@ -159,52 +159,6 @@ if(isset($_GET['employee_id']))
         return;
     }
 }
-
-// Update employee details
-if(isset($_POST['update_employee']))
-{
-    $employee_id = mysqli_real_escape_string($conn, $_POST['employee_id']);
-
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $department = mysqli_real_escape_string($conn, $_POST['department']);
-    $designation = mysqli_real_escape_string($conn, $_POST['designation']);
-    $salary = mysqli_real_escape_string($conn, $_POST['salary']);
-
-    if($name == NULL || $department == NULL || $designation == NULL
-    || $salary == NULL)
-    {
-        $res = [
-            'status' => 422,
-            'message' => 'All fields are mandatory'
-        ];
-        echo json_encode($res);
-        return;
-    }
-
-    $query = "UPDATE employees SET FullName='$name', Department='$department', Designation='$designation', 
-    Salary='$salary' WHERE id='$employee_id'";
-    $query_run = mysqli_query($conn, $query);
-
-    if($query_run)
-    {
-        $res = [
-            'status' => 200,
-            'message' => 'Employee Updated Successfully'
-        ];
-        echo json_encode($res);
-        return;
-    }
-    else
-    {
-        $res = [
-            'status' => 500,
-            'message' => 'Employee Not Updated'
-        ];
-        echo json_encode($res);
-        return;
-    }
-}
-
 // delete employee
 if(isset($_POST['delete_employee']))
 {

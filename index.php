@@ -18,3 +18,5 @@ if (!isset($_SESSION['auth'])) {
 include $page.'.php';
 ?>
 </main>
+
+

@@ -13,6 +13,7 @@ if (isset($_POST['payslip'])) :
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) :
         $row = mysqli_fetch_assoc($result);
+        $id = $row['id'];
         $Department = $row['Department'];
         $Designation = $row['Designation'];
         $salary = $row['Salary'];
@@ -44,14 +45,15 @@ if (isset($_POST['payslip'])) :
 
         <?php
         // insert payslip details into the database
-        $query = "INSERT INTO payslip(FullName, Department, Designation, Date_issued, Food, Transport, Relief, 
+        $query = "INSERT INTO payslip(emp_id, Date_issued, Food, Transport, Relief, 
         total_allowance, PAYE, NHIF, NSSF, total_deductions, Net_pay) 
-        VALUES('$emp_name', '$Department', '$Designation', '$date', '$food', '$transport', '$personal_relief',
+        VALUES('$id','$date', '$food', '$transport', '$personal_relief',
         '$total_allowances', '$paye', '$nhif', '$nssf', '$total_deductions', '$net_pay')";
         $query_run = mysqli_query($conn, $query);
         // Get the id of the last inserted record provided it has an auto increment function
         $lastInsertedId = mysqli_insert_id($conn);
-        $selectQuery = "SELECT * FROM payslip WHERE id = '$lastInsertedId'";
+        $selectQuery = "SELECT * FROM payslip p, employees e WHERE p.emp_id = e.id AND
+        p.emp_id = '$lastInsertedId'";
         $resultt = mysqli_query($conn, $selectQuery);
         if (mysqli_num_rows($resultt) > 0) {
             while($payslip = mysqli_fetch_assoc($resultt)) {
