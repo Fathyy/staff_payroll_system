@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/config/database.php";
 ?>
-
+<?php include_once __DIR__ . "/includes/header.php";?>
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-12">
@@ -31,7 +31,7 @@ require __DIR__ . "/config/database.php";
                         <!--date  -->
                         <div class="mb-3 col-md-4">
                             <label for="date">Issued Date</label>
-                            <input type="date" name="date" id="date">
+                            <input type="text" name="date" id="date">
                         </div>
 
                         <div class="mb-3 col-md-4">
@@ -44,3 +44,9 @@ require __DIR__ . "/config/database.php";
         </div>
     </div>
 </div>
+<?php include_once __DIR__ . "/includes/footer.php";?>
+<script>
+    $( "#date" ).datepicker({
+    dateFormat: "dd-mm-yy"
+    });
+    </script>

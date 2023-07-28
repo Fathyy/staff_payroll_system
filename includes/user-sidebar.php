@@ -23,7 +23,7 @@ include_once __DIR__ . "/header.php";?>
 
                         <li class="nav-item py-2 py-sm-0">
                             <a href="index.php?page=user-account" class="nav-link text-white">
-                            <i class="fa-solid fa-receipt"></i> 
+                            <i class="fa-solid fa-user"></i> 
                                 <span class="fs-4 d-none d-sm-inline ms-3">My Account</span>
                                 </a>
                         </li>
