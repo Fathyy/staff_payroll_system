@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . "/config/database.php";
-
+require_once __DIR__ . "/config/database.php";
 require_once __DIR__ . "/fpdf/fpdf.php";
+
 
 if (isset($_POST['payslip'])) :
     $emp_name =$_POST['employee_list'];
@@ -53,36 +53,37 @@ if (isset($_POST['payslip'])) :
         // Get the id of the last inserted record provided it has an auto increment function
         $lastInsertedId = mysqli_insert_id($conn);
 
-        // declare empty array to be used later
-          
-        $selectQuery = "SELECT e.FullName, e.Department, e.Designation,
-        e.National_id, e.Salary, e.Email, p.Date_issued, p.Food, p.Transport,
+        $row_data=[
+            'FullName'=>'',
+            'Department'=>'',
+            'Designation'=>'',
+            'ID_no'=>'',
+            'Salary'=>'',
+            'Email'=>'',
+            'Date_issued'=>'',
+            'mode_of_pay'=>'',
+            'Food'=>'',
+            'Transport'=>'',
+            'Relief'=>'',
+            'total_allowance'=>'',
+            'Paye'=>'',
+            'nhif'=>'',
+            'nssf'=>'',
+            'total_deductions'=>'',
+            'net_pay'=>'' 
+        ]; 
+        
+        // fetch multiple data from employees and payslip tables  
+        $selectQuery = "SELECT e.FullName, e.Email, e.Department, e.Designation,
+        e.Salary, e.National_id, p.Date_issued, p.Food, p.Transport,
         p.Relief, p.total_allowance, p.PAYE, p.NHIF, p.NSSF,
-        p.total_deductions, p.Net_pay FROM employees e, payslip p 
-        WHERE e.id = p.emp_id AND p.emp_id = '$lastInsertedId'";
+        p.total_deductions, p.Net_pay FROM payslip p, employees e 
+        WHERE e.id=p.emp_id AND p.id='$lastInsertedId'";
         $resultt = mysqli_query($conn, $selectQuery);
         if (mysqli_num_rows($resultt) > 0) {
             while($payslip = mysqli_fetch_assoc($resultt)) {
                 // store the payslip data into an array
-                $row_data=[
-                    'FullName'=>'',
-                    'Department'=>'',
-                    'Designation'=>'',
-                    'ID_no'=>'',
-                    'Salary'=>'',
-                    'Email'=>'',
-                    'Date_issued'=>'',
-                    'mode_of_pay'=>'',
-                    'Food'=>'',
-                    'Transport'=>'',
-                    'Relief'=>'',
-                    'total_allowance'=>'',
-                    'Paye'=>'',
-                    'nhif'=>'',
-                    'nssf'=>'',
-                    'total_deductions'=>'',
-                    'net_pay'=>'', 
-                ];
+                
                 $row_data=[
                     'FullName'=>$payslip['FullName'],
                     'Department'=>$payslip['Department'],
@@ -100,12 +101,15 @@ if (isset($_POST['payslip'])) :
                     'nhif'=> $payslip['NHIF'],
                     'nssf'=> $payslip['NSSF'],
                     'total_deductions'=> $payslip['total_deductions'],
-                    'net_pay'=>$payslip['Net_pay'],
+                    'net_pay'=>$payslip['Net_pay']
                 ];  
+                
+            }
+        }
             
 
     class PDF extends FPDF
-        {
+    {
         function Header(){
             
             //Display Company Info
@@ -113,7 +117,6 @@ if (isset($_POST['payslip'])) :
             $this->Cell(50,10,"Red stone Enterprises",0,1);
             $this->SetFont('Arial','',14);
             $this->Cell(50,7,"Kimathi Street,",0,1);
-            $this->Cell(50,7,$row_data['Date_issued'],0,1);
             
             
             //Display INVOICE text
@@ -135,6 +138,7 @@ if (isset($_POST['payslip'])) :
             $this->Cell(50,10,"Emp Name : " .$row_data['FullName'],0,1);
             $this->Cell(50,10,"Department : ".$row_data['Department'],0,1);
             $this->Cell(50,10,"Designation : ".$row_data['Designation'],0,1);
+            $this->Cell(50,10,"Date Issued : ".$row_data['Date_issued'],0,1);
                 
             //id no
             $this->SetY(55);
@@ -171,7 +175,7 @@ if (isset($_POST['payslip'])) :
             $this->Cell(47.5,10,"Food",1,0,"C");
             $this->Cell(47.5,10,$row_data['Food'],1,0,"C");
             $this->Cell(47.5,10,"PAYE",1,0,"C");
-            $this->Cell(47.5,10,$row_data['paye'],1,1,"C");
+            $this->Cell(47.5,10,$row_data['Paye'],1,1,"C");
 
             $this->SetFont('Arial','',14);
             $this->Cell(47.5,10,"Transport",1,0,"C");
@@ -200,17 +204,22 @@ if (isset($_POST['payslip'])) :
             $this->Cell(40,9,$row_data['net_pay'],1,1,"R");
             
         }   
-        }
+    }
     
-
     //Create A4 Page with Portrait 
     $fpdf = new PDF("P","mm","A4");
     $fpdf->AddPage();
     $fpdf->body($row_data);
     $fpdf->Output();
+        ?>
+            
+
+
+
+
+
     
-}
-    } 
+
     
     
    
