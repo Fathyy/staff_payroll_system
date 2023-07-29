@@ -34,7 +34,7 @@ if (isset($_SESSION['auth'])) :
                                 ?>
                             <tr>
                                 <td><?php echo $date?></td>
-                                <td><a href="individual-payslip.php?id=<?php $user_id?>"
+                                <td><a href="individual-payslip.php?id=<?php echo $user_id?>&date=<?php echo $date?>"
                                 class="btn btn-warning w-auto">View Payslip</a></td>
                             </tr>
                             <?php endwhile?>

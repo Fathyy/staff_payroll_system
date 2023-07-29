@@ -4,9 +4,9 @@ require_once __DIR__ . "/fpdf/fpdf.php";
 
 if (isset($_GET['id'])) :
     $id  = $_GET['id'];
+
     $sql = "SELECT * from employees where id ='$id'";
     $result = mysqli_query($conn, $sql);
-
     // get details of the employee chosen
     if (mysqli_num_rows($result) > 0) :
         $row = mysqli_fetch_assoc($result);
@@ -63,39 +63,42 @@ if (isset($_GET['id'])) :
         ]; 
         
         // fetch multiple data from employees and payslip tables  
-        $selectQuery = "SELECT e.FullName, e.Email, e.Department, e.Designation,
+if (isset($_GET['date'])) {
+    $date  = $_GET['date'];
+
+    $selectQuery = "SELECT e.FullName, e.Email, e.Department, e.Designation,
         e.Salary, e.National_id, p.Date_issued, p.Food, p.Transport,
         p.Relief, p.total_allowance, p.PAYE, p.NHIF, p.NSSF,
         p.total_deductions, p.Net_pay FROM payslip p, employees e 
-        WHERE e.id=p.emp_id";
-        $resultt = mysqli_query($conn, $selectQuery);
-        if (mysqli_num_rows($resultt) > 0) {
-            while($payslip = mysqli_fetch_assoc($resultt)) {
-                // store the payslip data into an array
-                
-                $row_data=[
-                    'FullName'=>$payslip['FullName'],
-                    'Department'=>$payslip['Department'],
-                    'Designation'=>$payslip['Designation'],
-                    'ID_no'=> $payslip['National_id'],
-                    'Salary'=> $payslip['Salary'],
-                    'Email'=> $payslip['Email'],
-                    'Date_issued'=> $payslip['Date_issued'],
-                    'mode_of_pay'=> 'Bank Transfer',
-                    'Food'=> $payslip['Food'],
-                    'Transport'=> $payslip['Transport'],
-                    'Relief'=> $payslip['Relief'],
-                    'total_allowance'=> $payslip['total_allowance'],
-                    'Paye'=> $payslip['PAYE'],
-                    'nhif'=> $payslip['NHIF'],
-                    'nssf'=> $payslip['NSSF'],
-                    'total_deductions'=> $payslip['total_deductions'],
-                    'net_pay'=>$payslip['Net_pay']
-                ];  
-                
-            }
+        WHERE e.id=p.emp_id AND p.Date_issued='$date'";
+    $resultt = mysqli_query($conn, $selectQuery);
+    if (mysqli_num_rows($resultt) > 0) {
+        while($payslip = mysqli_fetch_assoc($resultt)) {
+            // store the payslip data into an array
+
+            $row_data=[
+                'FullName'=>$payslip['FullName'],
+                'Department'=>$payslip['Department'],
+                'Designation'=>$payslip['Designation'],
+                'ID_no'=> $payslip['National_id'],
+                'Salary'=> $payslip['Salary'],
+                'Email'=> $payslip['Email'],
+                'Date_issued'=> $payslip['Date_issued'],
+                'mode_of_pay'=> 'Bank Transfer',
+                'Food'=> $payslip['Food'],
+                'Transport'=> $payslip['Transport'],
+                'Relief'=> $payslip['Relief'],
+                'total_allowance'=> $payslip['total_allowance'],
+                'Paye'=> $payslip['PAYE'],
+                'nhif'=> $payslip['NHIF'],
+                'nssf'=> $payslip['NSSF'],
+                'total_deductions'=> $payslip['total_deductions'],
+                'net_pay'=>$payslip['Net_pay']
+            ];
+
         }
-            
+    }
+}    
 
     class PDF extends FPDF
     {

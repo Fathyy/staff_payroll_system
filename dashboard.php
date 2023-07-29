@@ -34,12 +34,12 @@
 
         <div class="col-md-4">
             <div class="card mb-3">
-                <div class="card-header">Payslip</div>
+                <div class="card-header">Payslips generated</div>
                 <div class="card-body">
                     <h1 class="card-text">
                         <?php require 'config/database.php';
                         // change this one to payslip later
-                        $sql = "SELECT id from department";
+                        $sql = "SELECT id from payslip";
                         $result = mysqli_query($conn, $sql);
                         echo mysqli_affected_rows($conn);
                         ?>
