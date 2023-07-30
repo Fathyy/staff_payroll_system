@@ -1,6 +1,8 @@
 <?php
+
 require_once __DIR__ . "/config/database.php";
 require_once __DIR__ . "/fpdf/fpdf.php";
+
 
 
 if (isset($_POST['payslip'])) :
@@ -35,7 +37,7 @@ if (isset($_POST['payslip'])) :
         // calculate PAYE of an individual
         $first_bracket = (0.1*24000);
         $second_bracket =(0.25* 8333);
-        $third_bracket =($salary -32333) * 0.3;
+        $third_bracket =($salary-32333) * 0.3;
         $paye = round($first_bracket + $second_bracket + $third_bracket);
         $total_deductions = $paye + $nhif + $nssf;
         $net_pay = ($salary + $total_allowances) - $total_deductions;
@@ -114,9 +116,7 @@ if (isset($_POST['payslip'])) :
             
             //Display Company Info
             $this->SetFont('Arial','B',14);
-            $this->Cell(50,10,"Red stone Enterprises",0,1);
-            $this->SetFont('Arial','',14);
-            $this->Cell(50,7,"Kimathi Street,",0,1);
+            $this->Cell(50,10,"System Generated Payslip",0,1);
             
             
             //Display INVOICE text
@@ -210,7 +210,8 @@ if (isset($_POST['payslip'])) :
     $fpdf = new PDF("P","mm","A4");
     $fpdf->AddPage();
     $fpdf->body($row_data);
-    $fpdf->Output();
+    $fpdf->Output('mypayslip.pdf','I');
+    
         ?>
             
 

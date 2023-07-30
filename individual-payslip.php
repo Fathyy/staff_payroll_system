@@ -70,7 +70,7 @@ if (isset($_GET['date'])) {
         e.Salary, e.National_id, p.Date_issued, p.Food, p.Transport,
         p.Relief, p.total_allowance, p.PAYE, p.NHIF, p.NSSF,
         p.total_deductions, p.Net_pay FROM payslip p, employees e 
-        WHERE e.id=p.emp_id AND p.Date_issued='$date'";
+        WHERE e.id=p.emp_id AND p.Date_issued='$date' AND e.id='$id'";
     $resultt = mysqli_query($conn, $selectQuery);
     if (mysqli_num_rows($resultt) > 0) {
         while($payslip = mysqli_fetch_assoc($resultt)) {
@@ -106,11 +106,8 @@ if (isset($_GET['date'])) {
             
             //Display Company Info
             $this->SetFont('Arial','B',14);
-            $this->Cell(50,10,"Red stone Enterprises",0,1);
-            $this->SetFont('Arial','',14);
-            $this->Cell(50,7,"Kimathi Street,",0,1);
-            
-            
+            $this->Cell(50,10,"System Generated Payslip",0,1);
+        
             //Display INVOICE text
             $this->SetY(15);
             $this->SetX(-40);

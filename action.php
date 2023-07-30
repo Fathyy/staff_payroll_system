@@ -5,12 +5,14 @@ require __DIR__ . "/config/database.php";
 if (isset($_POST['signup'])) {
     $fullName = $_POST['fullName'];
     $email = $_POST['email'];
+    // convert into integer before inserting into the DB to prevent inconsistencies
+    $role = intval($_POST['role']);
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
     $error=[];
 
-    if (empty($fullName) || empty($email) || empty($password) || empty($cpassword)) {
+    if (empty($fullName) || empty($email) || empty($role) || empty($password) || empty($cpassword)) {
         $_SESSION['error'] = "This field cannot be empty";
     }
 
@@ -34,7 +36,7 @@ if (isset($_POST['signup'])) {
 
     if (count($error) === 0) {
         # if there is no error, insert user into the DB
-        $sql = "INSERT INTO employees(FullName, Email, password_hash) VALUES('$fullName', '$email', '$password_hash')";
+        $sql = "INSERT INTO employees(FullName, Email, employee_role,  password_hash) VALUES('$fullName', '$email', $role,'$password_hash')";
         $result = mysqli_query($conn, $sql);
                 header("Location: login.php");
                 exit;
@@ -61,7 +63,7 @@ elseif (isset($_POST['login'])) {
             if (password_verify($password, $row['password_hash'])) {
                 $id = $row['id'];
                 $fname =$row['FullName'];
-                $role = $row['role'];
+                $role = $row['employee_role'];
 
                 $_SESSION['auth'] = array(
                     'id'=>$id,

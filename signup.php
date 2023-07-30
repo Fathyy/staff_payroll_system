@@ -28,6 +28,20 @@ require_once __DIR__ . "/includes/header.php";
                         <small style="color:red"><?php echo $error['email'] ?? ""?></small>
                     </div>
 
+                    <!-- Choose role: admin or user -->
+                    <div class="mb-3">Choose your role:
+                        <label for="user" class="ms-5">
+                        <input type="radio" name="role" id="user" value="0"/>
+                        User
+                        </label>
+
+                        <label for="admin" class="ms-5">
+                        <input type="radio" name="role" id="admin" value="1"/>
+                        Admin
+                        </label>
+                    </div>
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
