@@ -1,7 +1,15 @@
 <?php
 include_once __DIR__ . "/header.php";?>
+<style>
+    <?php include "css/style.css"?>
+</style>
+
+<!-- button to open sidebar in small screens -->
+<div id="small-button">
+<button class="openbtn btn btn-primary">&#9776;</button>
+</div>
         <div class="row flex-nowrap">
-            <div class="bg-dark col-auto col-md-4 col-lg-2 p-0 min-vh-100 d-flex flex-column justify-content-between">
+            <div class="bg-dark col-auto col-md-4 col-lg-2 p-0 min-vh-100 d-flex flex-column justify-content-between sidebar">
                 <div class="bg-dark p-2">
                     <a href="#" class="d-flex text-decoration-none mt-1 align-items-center text-white">
                         <span class="fs-4 d-none d-sm-inline ms-3">Staff Payroll</span>
@@ -49,7 +57,7 @@ include_once __DIR__ . "/header.php";?>
                                 </a>
                         </li>
                     </ul>
-                  </div>
+                </div>
                 <div class="dropdown open p-3">
                     <button class="btn border-none dropdown-toggle text-white" type="button" id="triggerId" aria-expanded="false" data-bs-toggle="dropdown">
                         <i class="fa-solid fa-user"></i><span class="ms-2">Admin</span>
@@ -57,8 +65,19 @@ include_once __DIR__ . "/header.php";?>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
                         <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
-                </div>
+                </div>    
+            </div>
 
-                
-        </div>
+            <script>
+                const smallButton = document.querySelector('#small-button');
+                const sideBar = document.querySelector('.sidebar');
+
+
+                smallButton.addEventListener('click', () => {
+                    sideBar.style.visibility="visible";
+                    smallButton.style.visibility="hidden";
+                })
+            </script>
+
+            
     <?php include_once __DIR__ . "/footer.php";?>

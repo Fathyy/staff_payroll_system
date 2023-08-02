@@ -29,3 +29,15 @@ body {
 .nav-pills li a:hover{
     background-color: blue;
 }
+
+/* small screens */
+@media (max-width:576px) {
+    /*login and signup forms*/
+    .small-login{
+        width: 70%;
+    }
+
+    .sidebar{
+        visibility: hidden;
+    }
+}

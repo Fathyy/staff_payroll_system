@@ -1,10 +1,12 @@
 <?php
 session_start();
 require_once __DIR__ . "/includes/header.php";?>
-
+<style>
+    <?php include "css/style.css"?>
+</style>
 <div class="container">
     <div class="row flex-container justify-content-center align-items-center vh-100">
-        <div class="col-md-6 py-4 px-5" style="border: 1px solid black;">
+        <div class="col-md-6 py-4 px-5 small-login" style="border: 1px solid black;">
         <h2 style="text-align:center;">Staff Payroll system</h2>
             <h3 class="header">Login Form</h3>
             <form action="action.php" method="post">
@@ -20,7 +22,7 @@ require_once __DIR__ . "/includes/header.php";?>
                     </div>
 
                     <div class="btn">
-                        <button type="submit" class="btn btn-primary" name="login">Login</button>
+                        <button type="submit" class="small-login btn btn-primary text-center" name="login">Login</button>
                     </div>
 
                     <div>

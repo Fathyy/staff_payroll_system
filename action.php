@@ -15,7 +15,7 @@ if (isset($_POST['signup'])) {
     if (empty($fullName) || empty($email) || empty($role) || empty($password) || empty($cpassword)) {
         $_SESSION['error'] = "This field cannot be empty";
     }
-
+    
     $sanitisedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
     if ($sanitisedEmail) {
         $validatedEmail = filter_var($sanitisedEmail, FILTER_VALIDATE_EMAIL);
@@ -36,7 +36,7 @@ if (isset($_POST['signup'])) {
 
     if (count($error) === 0) {
         # if there is no error, insert user into the DB
-        $sql = "INSERT INTO employees(FullName, Email, employee_role,  password_hash) VALUES('$fullName', '$email', $role,'$password_hash')";
+        $sql = "INSERT INTO employees(FullName, Email, employee_role, password_hash) VALUES('$fullName', '$email', '$role','$password_hash')";
         $result = mysqli_query($conn, $sql);
                 header("Location: login.php");
                 exit;
