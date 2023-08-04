@@ -14,6 +14,9 @@ body {
 .container{
     margin: 0 auto;
 }
+.btn{
+    width: 100%;
+}
 .small-login{
     width: 50%;
 }
@@ -48,6 +51,9 @@ body {
 /* small screens */
 @media (max-width:576px) {
     /*login and signup forms*/
+    .btn{
+        width: 100%;
+    }
     .small-login{
         width: 70%;
     }

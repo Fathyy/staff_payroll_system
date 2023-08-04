@@ -5,7 +5,7 @@ require_once __DIR__ . "/includes/header.php";?>
     <?php include "css/style.css"?>
 </style>
 <div class="container">
-    <div class="row flex-container justify-content-center align-items-center vh-100">
+    <div class="row d-flex justify-content-center align-items-center vh-100">
         <div class="col-md-6 py-4 px-5 small-login" style="border: 1px solid black;">
         <h2 style="text-align:center;">Staff Payroll system</h2>
             <h3 class="header">Login Form</h3>
