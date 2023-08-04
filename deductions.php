@@ -1,8 +1,12 @@
 <?php
 include_once __DIR__ . "/includes/header.php";
-
 require __DIR__ . "/config/database.php";
 ?>
+
+<style>
+    <?php include "css/style.css"?>
+</style>
+
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-12">
@@ -11,9 +15,9 @@ require __DIR__ . "/config/database.php";
                     <h4>Employee Deductions</h4>
                 </div>
 
-                <div class="card-body d-flex justify-content-between">
+                <div class="card-body d-sm-block d-flex justify-content-between">
                     <!-- form to create deduction -->
-                    <div class="col-md-6 border" style="width:45%;">
+                    <div class="col-md-6 border inner-one">
                         <form action="action.php" method="post" class="p-3" id="deductionsForm">
                         <input type="hidden" name="deduction_id" id="deduction_id">
                             <div class="mb-3">
@@ -30,7 +34,7 @@ require __DIR__ . "/config/database.php";
                         </form>
                     </div>
 
-                    <div class="col-md-6" style="width:45%;">
+                    <div class="col-md-6 inner-one--lesser">
                         <!-- display the deductions information on this side -->
                         <table class="table table-bordered" id="myTable">
                             <thead>

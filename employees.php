@@ -3,6 +3,11 @@ include_once __DIR__ . "/includes/header.php";
 
 require __DIR__ . "/config/database.php";
 ?>
+
+<style>
+    <?php include "css/style.css"?>
+</style>
+
 <!-- Add new employee modal -->
 <div class="modal fade" id="employeeAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -100,7 +105,7 @@ require __DIR__ . "/config/database.php";
 
 <div class="container-fluid">
     <div class="row mt-5">
-        <div class="col-md-12">
+        <div class="col-sm-8 col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4>Employee List
@@ -111,7 +116,7 @@ require __DIR__ . "/config/database.php";
                     </h4>
                     
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="overflow-x: auto;">
                     <table id="myTable" class="table table-bordered table-hover table-responsive">
                         <colgroup>
                             <col width="20%">
@@ -122,11 +127,11 @@ require __DIR__ . "/config/database.php";
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>Full Name</th>
-                                <th>employee</th>
-                                <th>Designation</th>
-                                <th>Salary</th>
-                                <th>Action</th>
+                                <th class="more-priority-1">Full Name</th>
+                                <th class="less-priority">Department</th>
+                                <th class="less-priority">Designation</th>
+                                <th class="more-priority-2">Salary</th>
+                                <th class="more-priority-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -136,11 +141,11 @@ require __DIR__ . "/config/database.php";
                             if (mysqli_num_rows($result) > 0) :
                                 while ($row = mysqli_fetch_assoc($result)) : ?>
                                     <tr>
-                                        <td><?php echo $row['FullName']?></td> 
-                                        <td><?php echo $row['Department']?></td>
-                                        <td><?php echo $row['Designation']?></td>
-                                        <td><?php echo $row['Salary']?></td> 
-                                        <td>
+                                        <td class="more-priority-1"><?php echo $row['FullName']?></td> 
+                                        <td class="less-priority"><?php echo $row['Department']?></td>
+                                        <td class="less-priority"><?php echo $row['Designation']?></td>
+                                        <td class="more-priority-2"><?php echo $row['Salary']?></td> 
+                                        <td class="more-priority-3">
                                             <center>
                                             <!-- View Employee -->
                                             <button class="viewEmployeeBtn btn btn-sm btn-outline-warning w-auto" type="button"

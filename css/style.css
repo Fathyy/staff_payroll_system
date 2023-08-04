@@ -14,11 +14,8 @@ body {
 .container{
     margin: 0 auto;
 }
-.btn{
-    width: 100%;
-}
-.btn > button{
-    width: 20%;
+.small-login{
+    width: 50%;
 }
 
 /* login form */
@@ -30,14 +27,73 @@ body {
     background-color: blue;
 }
 
+/* admin-index */
+.main-wrapper{
+    padding: 0;
+    background-color:#ADD8E6;
+}
+#view-panel{
+    width:calc(100% - 250px);
+    padding: .5em;
+    height: 100%;
+}
+#small-button{
+    display: none;
+}
+/* allowances and deductions */
+.inner-one{
+    width: 45%;
+}
+
 /* small screens */
 @media (max-width:576px) {
     /*login and signup forms*/
     .small-login{
         width: 70%;
     }
-
+    /* admin-index */
+    #view-panel{
+        width: 100%;
+    }
+    #small-button{
+        display: block;
+    }
+    /* sidebar */
     .sidebar{
         visibility: hidden;
+        height:0;
+        width:0;
+    } 
+    .d-sm-none{
+        display: none !important;
+    }
+    /* a class in css to show a toggle */
+    .toggled {
+        visibility: visible;
+        height: auto;
+        width: auto;
+    } 
+    /* allowance and deductions */
+    .d-sm-block{
+        display: block !important;
+    }
+    .inner-one{
+        width:100% !important;
+    }
+    .inner-one--lesser{
+        margin-top: 2rem;
+    }
+    /* employees */
+    .less-priority{
+        display: none;
+    }
+    .more-priority-1{
+        width: 50%;
+    }
+    .more-priority-2{
+        width: 20%;
+    }
+    .more-priority-3{
+        width: 30%;
     }
 }
