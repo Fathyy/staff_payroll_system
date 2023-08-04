@@ -80,7 +80,7 @@ body {
         width: auto;
     } 
     /* allowance and deductions */
-    .d-sm-block{
+    .small-block{
         display: block !important;
     }
     .inner-one{
