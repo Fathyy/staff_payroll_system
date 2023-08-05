@@ -16,3 +16,6 @@ If the user is a staff member, he/she can log in and will be redirected to a sep
 
 
 ![generatePayslip](https://github.com/Fathyy/staff_payroll_system/assets/91678483/c197e41a-29ae-45de-90e6-bcca9b1baa3a)
+
+
+![psydlip2](https://github.com/Fathyy/staff_payroll_system/assets/91678483/e0251d58-a5b3-402c-a02e-12e861934396)
