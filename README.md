@@ -15,3 +15,4 @@ If the user is a staff member, he/she can log in and will be redirected to a sep
   *	There is a separate section to view already processed pay slips by the admin. The staff member can proceed to download the pay slips.
 
 
+![generatePayslip](https://github.com/Fathyy/staff_payroll_system/assets/91678483/c197e41a-29ae-45de-90e6-bcca9b1baa3a)
