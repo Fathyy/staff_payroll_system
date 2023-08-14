@@ -173,7 +173,7 @@ require __DIR__ . "/config/database.php";
 <?php include_once __DIR__ . "/includes/footer.php";?>
 <script>
     // create employee
-        $(document).on('submit', '#saveEmployee', function (e) {
+        $(document).on('submit', '#saveEmployee', function(e) {
             e.preventDefault();
 
             var formData = new FormData(this);

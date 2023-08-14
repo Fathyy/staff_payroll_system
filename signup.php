@@ -61,7 +61,7 @@ require_once __DIR__ . "/includes/header.php";
                 </div>
 
                 <div class="btn">
-                <button type="submit" class="btn btn-primary" name="signup">Signup</button>
+                <button type="submit" class="small-login btn btn-primary text-center" name="signup">Signup</button>
                 </div>
                 
                 <div>

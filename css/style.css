@@ -70,6 +70,14 @@ body {
         height:0;
         width:0;
     } 
+    .footer{
+        background: blue;
+        padding: 20px;
+        font-size: 20px;
+        color: white;
+        position: relative;
+        top: 240px;
+    }
     .d-sm-none{
         display: none !important;
     }

@@ -26,6 +26,10 @@ if (!isset($_SESSION['auth'])) {
         <?php $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
         include $page.'.php';
         ?>
+
+        <div class="footer">
+            &copy;<?php echo date("Y");?>
+        </div>
     </main>
 </div>
 
