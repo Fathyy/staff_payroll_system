@@ -3,6 +3,10 @@ session_start();
 require_once __DIR__ . "/includes/header.php";            
 ?>
 
+<style>
+    <?php include "css/style.css"?>
+</style>
+
 <div class="container">
     <div class="row flex-container justify-content-center align-items-center vh-100">
         <div class="col-md-6 py-4 px-5" style="border: 1px solid black;">
@@ -29,16 +33,16 @@ require_once __DIR__ . "/includes/header.php";
                     </div>
 
                     <!-- Choose role: admin or user -->
-                    <div class="mb-3">Choose your role:
-                        <label for="user" class="ms-5">
-                        <input type="radio" name="role" id="user" value="0"/>
-                        User
-                        </label>
-
-                        <label for="admin" class="ms-5">
-                        <input type="radio" name="role" id="admin" value="1"/>
-                        Admin
-                        </label>
+                    <div class="mb-3 flex-center">
+                        <div class="form-row flex-center">
+                            <input type="radio" name="role" id="user" value="0" class="input-form flex-center">
+                            <label for="user" class="ms-5 form-label">User</label>
+                        </div>
+                        
+                        <div class="form-row flex-center">
+                            <input type="radio" name="role" id="admin" value="1" class="input-form flex-center">
+                            <label for="admin" class="ms-5 form-label">Admin</label>
+                        </div>
                     </div>
 
 

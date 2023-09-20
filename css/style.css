@@ -25,6 +25,65 @@ body {
 .form-control{
     border: 1px solid black;
 }
+
+
+/* signup form */
+.flex-center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+.form-row{
+    background: #cccccc;;
+    height: 40px;
+    width:150px;
+    border-radius: 50px;
+    margin:10px;
+    overflow: hidden;
+    position: relative; 
+  }
+  .input-form{
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .input-form::before{
+    content: "";
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%
+  }
+  .input-form:checked::before{
+    background: #21209c;
+  }
+  .input-form::after {
+    content: '';
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    height: 15px;
+    border-radius: 50px;
+    transform: translate(0, -50%);
+    width: 15px;
+    border: 4px solid #21209c;
+  }
+  .input-form:checked::after {
+    border: 4px solid #ffffff;
+  }
+  .form-label{
+    color: #21209c;
+    font-size: 1.1rem;
+    margin-left: 10px;
+    z-index: 1;
+  }
+    .input-form:checked ~ .form-label {
+    color: #ffffff;
+  }
+
+
 /* sidebar */
 .nav-pills li a:hover{
     background-color: blue;

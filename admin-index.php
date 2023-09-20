@@ -8,7 +8,6 @@ if (!isset($_SESSION['auth'])) {
 ?>
 <?php require __DIR__ . '/includes/sidebar.php';?>
 
-
 <style>
     <?php include "css/style.css"?>
 </style>
